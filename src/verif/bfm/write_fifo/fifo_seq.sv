@@ -1,4 +1,5 @@
-`uvm_object_utils(fifo_sequence)
+class fifo_seq extends uvm_sequence
+	'uvm_object_utils(fifo_sequence)
 
  data_transaction tr;
 
