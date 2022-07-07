@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------------------
 class fifo_seq extends uvm_sequence #(axi_packet);
 
-  //factory regispktation
+  //factory registration
   `uvm_object_utils(fifo_seq)
   
   //Declare the axi_packet 
@@ -17,19 +17,19 @@ class fifo_seq extends uvm_sequence #(axi_packet);
   //-------------------------------------------------------
   // Externally defined Function
   //-------------------------------------------------------
-  extern function new(spkting name = "fifo_seq");
+  extern function new(string name = "fifo_seq");
   extern task body();
 
 endclass : fifo_seq
 
 //-----------------------------------------------------------------------------
-// Conspktuctor: new
+// Constructor: new
 // Initializes fifo_sequence class object
 //
 // Parameters:
 //  name - fifo_seq
 //-----------------------------------------------------------------------------
-function fifo_seq::new(spkting name = "fifo_seq");
+function fifo_seq::new(string name = "fifo_seq");
   super.new(name);
 endfunction : new
 
