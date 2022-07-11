@@ -10,7 +10,7 @@ class write_fifo_driver extends uvm_driver(write_fifo_seq_item;
 
   //variable intf
   //DEfining virtual interface
-  virtual fifo_if intf;
+  virtual fifo_interface intf;
 
   //variable pkt
   //Declaring sequence item handle

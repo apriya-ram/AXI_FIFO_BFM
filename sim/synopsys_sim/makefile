@@ -5,19 +5,17 @@ VCS_CMD_RAND    = vcs -V -R  -full64 -sverilog +v2k -debug_access+all -ntb_opts 
  
 sim:
 	${VCS_CMD_RAND} \
-	+incdir+../../src/hvl_top/master/ \
-	+incdir+../../src/hdl_top/master_agent_bfm/  \
-	+incdir+../../src/hvl_top/env/virtual_sequencer/ \
-  +incdir+../../src/hvl_top/test/virtual_sequence/ \
-	+incdir+../../src/hvl_top/env \
-	+incdir+../../src/hvl_top/slave \
-	+incdir+../../src/hvl_top/test \
-	+incdir+../../src/hdl_top/slave_agent_bfm \
-	+incdir+../../src/hdl_top/spi_interface \
-	../../src/hvl_top/test/test_pkg.sv \
-	../../src/hdl_top/spi_interface/spi_if.sv \
-	../../src/hdl_top/hdl_top.sv \
-	../../src/hvl_top/hvl_top.sv \
+	+incdir+../../src/verif/vip/axi_master_vip/ \
+	+incdir+../../src/verif/bfm/write_fifo/ \
+	+incdir+../../src/verif/tb/env/ \
+  +incdir+../../src/verif/tb/test/  \
+	+incdir+../../src/verif/vip/axi_slave_vip/ \
+	+incdir+../../src/verif/bfm/read_fifo/ \
+	+incdir+../../src/verif/bfm/write_fifo/fifo_interface \
+	../../src/verif/bfm/write_fifo/fifo_interface/fifo_interface.sv \
+	../../src/verif/tb/top.sv \
+	../../src/verif/vip/axi_master_vip/
+	../../src/verif/vip/axi_slave_vip/
 	+UVM_VERBOSITY=MEDIUM \
 	+plusarg_ignore \
 	-l transcript_vcs.log

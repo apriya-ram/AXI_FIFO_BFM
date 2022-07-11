@@ -10,7 +10,7 @@ class fifo_bfm_monitor extends uvm_component;
 
    //variable intf
    //Defining virtual interface
-   virtual fifo_if intf;
+   virtual fifo_interface intf;
 
    //variable pkt
    //Instantiating a sequence item packet
