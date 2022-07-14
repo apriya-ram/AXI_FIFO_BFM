@@ -42,25 +42,25 @@ task axi_handshaking_seq body();
 
                         property valid_b_ready
                         @(posedge clk)
-                        $rose (valid) |=> $rose(ready)
+                                $rose (valid) |=> $rose(ready);
                         endproperty
                 end
 
                 else if (AxREADY==1 && AxVALID==0) begin
                         property ready_b_valid
                         @(posedge clk)
-                        $rose (ready) |=> $rose (vaid)
+                                $rose (ready) |=> $rose (vaid);
                         endproperty
                 end
 
                 else if (AxREADY==1 && AxVALID==1)
                         property ready_with_valid
                         @ (posedge clk)
-                        $rose (AXREADY) |= [0:n] Srose (AxVALID)
+                                $rose (AXREADY) |= [0:n] Srose (AxVALID);
                         endproperty
                 end
 
-                finsh_item(pk);
+        finsh_item(pkt);
         end
 endtask:body
 
