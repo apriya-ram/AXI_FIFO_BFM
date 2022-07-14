@@ -1,6 +1,5 @@
-'ifndef axi_handshaking_included_
 'define axi_handshaking_included_
-
+'ifndef axi_handshaking_included_
 
 class axi_handshaking_seq extends fifo_seq;
 
@@ -64,5 +63,6 @@ task axi_handshaking_seq body();
                 finsh_item(pk);
         end
 endtask:body
+
 'endif
 
