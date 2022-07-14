@@ -1,8 +1,8 @@
-ass axi_handshaking_seq extends fifo_seq;
-
-
 'ifndef axi_handshaking_included_
 'define axi_handshaking_included_
+
+
+class axi_handshaking_seq extends fifo_seq;
 
 
 //      factory Registration
@@ -23,9 +23,10 @@ ass axi_handshaking_seq extends fifo_seq;
         extern task body();
 
 endclass:axi_handshaking_seq
-
+\
 //...............................................................................................
-        Constructor new: Initialises the fifosequence class object
+//      Constructor new: 
+//      Initialises the fifosequence class object
 
 //      parameters:
 //      name:axi_handshaking_seq
