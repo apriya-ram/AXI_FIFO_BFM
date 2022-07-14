@@ -7,7 +7,7 @@ class axi_handshaking_seq extends fifo_seq;
 
 //      factory Registration
 
-        'uvm_object_utils(ax_handshaking_seq)
+        'uvm_object_utils(axi_handshaking_seq)
 
 //      Declare the AXI packet
 
