@@ -17,7 +17,8 @@ class axi4_master_monitor_proxy extends uvm_component;
   axi4_master_agent_config axi4_master_agent_cfg_h;
 
   // Declaring handles for master transaction
-  axi4_master_tx req_rd;
+
+axi4_master_tx req_rd;
   axi4_master_tx req_wr;
 
   // Variable : apb_master_mon_bfm_h
@@ -272,3 +273,4 @@ task axi4_master_monitor_proxy::axi4_read_data();
 endtask
 
 `endif
+
