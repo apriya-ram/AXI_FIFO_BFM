@@ -42,7 +42,7 @@ task axi_handashaking_test::run_phase(uvm_phase phase);
   handshaking_seq=axi_handshaking_seq::type_id::create("handshaking_seq");
   `uvm_info(get_type_name(),$sformatf("axi_handshaking_test"),UVM_LOW);
   phase.raise_objection(this);
-  handshaking_seq.start(axi_env_h.wr_fifo_sqr);
+  handshaking_seq.start(axi_env_h.wr_fifo_agent_h.wr_fifo_sqr);
   phase.drop_objection(this);
 
 endtask : run_phase

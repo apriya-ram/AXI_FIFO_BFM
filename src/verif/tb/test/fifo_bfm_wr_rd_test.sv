@@ -43,7 +43,7 @@ task fifo_bfm_wr_rd_test::run_phase(uvm_phase phase);
   fifo_wr_rd_seq=fifo_bfm_wr_rd_seq::type_id::create("fifo_wr_rd_seq");
   `uvm_info(get_type_name(),$sformatf("fifo_bfm_wr_rd_test"),UVM_LOW);
   phase.raise_objection(this);
-  fifo_wr_rd_seq.start(axi_env_h.wr_fifo_sqr);
+  fifo_wr_rd_seq.start(axi_env_h.wr_fifo_agent_h.wr_fifo_sqr);
   phase.drop_objection(this);
 
 endtask : run_phase

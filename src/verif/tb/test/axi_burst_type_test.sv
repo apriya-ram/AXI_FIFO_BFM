@@ -42,7 +42,7 @@ task axi_burst_type_test::run_phase(uvm_phase phase);
   burst_typ_seq=axi_burst_type_seq::type_id::create("burst_typ_seq");
   `uvm_info(get_type_name(),$sformatf("axi_burst_type_test"),UVM_LOW);
   phase.raise_objection(this);
-  burst_typ_seq.start(axi_env_h.wr_fifo_sqr);
+  burst_typ_seq.start(axi_env_h.wr_fifo_agent_h.wr_fifo_sqr);
   phase.drop_objection(this);
 
 endtask : run_phase

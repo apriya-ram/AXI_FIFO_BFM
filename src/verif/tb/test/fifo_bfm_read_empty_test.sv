@@ -43,7 +43,7 @@ task fifo_bfm_read_empty_test::run_phase(uvm_phase phase);
   fifo_read_empty_seq=fifo_bfm_read_empty_seq::type_id::create("fifo_read_empty_seq");
   `uvm_info(get_type_name(),$sformatf("fifo_bfm_read_empty_test"),UVM_LOW);
   phase.raise_objection(this);
-  fifo_read_empty_seq.start(axi_env_h.wr_fifo_sqr);
+  fifo_read_empty_seq.start(axi_env_h.wr_fifo_agent_h.wr_fifo_sqr);
   phase.drop_objection(this);
 
 endtask : run_phase
