@@ -4,8 +4,15 @@
 
 class fifo_bfm_wr_seq extends fifo_bfm_base_seq;
 
-//factory registeration
 `uvm_object_utils(fifo_bfm_wr_seq)
+
+  //-------------------------------------------------------
+  // Externally defined Tasks and Functions
+  //-------------------------------------------------------
+  extern function new(string name = "fifo_bfm_wr_seq", uvm_component parent = null);
+  extern virtual task body();
+
+endclass:fifo_bfm_wr_seq
 
 //-----------------------------------------------------------------------------
 // Constructor: new
@@ -15,15 +22,15 @@ class fifo_bfm_wr_seq extends fifo_bfm_base_seq;
 //  name - fifo_bfm_wr_seq
 //-----------------------------------------------------------------------------
 
-function new(string name="fifo_bfm_wr_seq");
+function fifo_bfm_wr_seq::new(string name="fifo_bfm_wr_seq");
 super.new(name);
-endfunction
+endfunction:new
 
 //--------------------------------------------------------------------------------------------
 // Task: body
 // task for fifo wr type sequence
 //--------------------------------------------------------------------------------------------
-task body(); 
+task fifo_bfm_wr_seq::body(); 
 begin
   fifo_sequence_item req;
   req=fifo_sequence_item::type_id::create("req");
@@ -31,8 +38,6 @@ begin
   assert(req.randomize()with{req.we==1 && req.re==0;})
   finish_item(req);
 end
-endtask
-
-endclass
+endtask:body
 
 `endif
