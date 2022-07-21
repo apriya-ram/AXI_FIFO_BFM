@@ -4,11 +4,11 @@
 typdef enum bit[1:0] { FIXED, INCR, WRAP } B_TYPE;
 //--------------------------------------------------------------------------------------------
 // Class: axi_burst_type_seq 
-// creating axi_burst__type_seq class extends from fifo_seq
+// creating axi_burst__type_seq class extends from fifo_bfm_base_seq
 // This class provides the Burst type write_read sequence
 //--------------------------------------------------------------------------------------------
 
-class axi_burst_type_seq extends fifo_seq;
+class axi_burst_type_seq extends fifo_bfm_base_seq;
 
   //factory registration
   `uvm_object_utils(axi_burst_type_seq)
