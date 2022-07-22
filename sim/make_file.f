@@ -50,5 +50,8 @@
 +incdir+../../src/verif/vip/axi_master_vip/readme
 
 
+  ../../src/verif/tb/top.sv \
+	
+
 
 
