@@ -4,8 +4,17 @@
 
 class fifo_bfm_empty_seq extends fifo_bfm_base_seq;
 
-//factory registeration
 `uvm_object_utils(fifo_bfm_empty_seq)
+
+  //-------------------------------------------------------
+  // Externally defined Tasks and Functions
+  //-------------------------------------------------------
+  extern function new(string name = "fifo_bfm_empty_seq", uvm_component parent = null);
+  extern virtual task body();
+
+
+endclass:fifo_bfm_empty_seq
+
 
 //-----------------------------------------------------------------------------
 // Constructor: new
@@ -15,16 +24,16 @@ class fifo_bfm_empty_seq extends fifo_bfm_base_seq;
 //  name - fifo_bfm_empty_seq
 //-----------------------------------------------------------------------------
 
-function new(string name="fifo_bfm_empty_seq");
+function fifo_bfm_empty_seq::new(string name="fifo_bfm_empty_seq", uvm_component parent = null);
 super.new(name);
-endfunction
+endfunction:new
 
 //--------------------------------------------------------------------------------------------
 // Task: body
 // task for fifo empty type sequence
 //--------------------------------------------------------------------------------------------
 
-task body(); 
+task fifo_bfm_empty_seq::body(); 
 begin
   fifo_sequence_item req;
   req=fifo_sequence_item::type_id::create("req");
@@ -32,7 +41,7 @@ begin
   assert(req.randomize()with{req.empty==1 && req.re==0;})
   finish_item(req);
 end
-endtask
+endtask:body
 
 `endif
 
