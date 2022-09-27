@@ -12,17 +12,17 @@ module Project_AXI4_Top # (
 						parameter  prot_wid   = 3,
 						parameter  strb_wid   = (data_wid/8),
 						parameter  rsp_wid    = 2
-								)
+					)
 								
 						
-						( 
+					( 
 
                 //INPUT PORT DECLARATION
                  input                   clk,
                  input                   rst,
-					  input                   ACLK,
-					  input                   ARESETn,
-					  input                   wr_en,
+		 input                   ACLK,
+		 input                   ARESETn,
+		 input                   wr_en,
                  input                   rd_en,
                  input [127:0]           wr_data,
                  input                   AWREADY_a,
@@ -33,7 +33,7 @@ module Project_AXI4_Top # (
                  input [rsp_wid-1:0]     RRESP_a, 			
                  input                   RLAST_a, 
                  input                   RVALID_a,
-					  input [id_wid-1:0]      BID_a,
+		 input [id_wid-1:0]      BID_a,
                  input [rsp_wid-1:0]     BRESP_a, 			
                  input                   BVALID_a,
 
@@ -63,35 +63,35 @@ module Project_AXI4_Top # (
                  output                   WLAST_a,  
                  output                   WVALID_a, 
                  output                   RREADY_a,
-					  output                   BREADY_a,
-					  output [127:0]           rd_data,    	
-					  output                   full,
+         	 output                   BREADY_a,
+		 output [127:0]           rd_data,    	
+		 output                   full,
                  output                   empty
 				 ); 
 				 
-                 //SIGNAL FOR FIFO-DECODER
-					  wire          FIFO_EMPTY;
+                 //SIGNALS FOR FIFO-DECODER
+         	 wire          FIFO_EMPTY;
                  wire          FIFO_FULL;
                  wire          WRITE_ENABLE; 				 
                  wire  [127:0] WRITE_DATA; 
                  wire          READ_ENABLE;
-					  wire  [127:0] READ_DATA;
+		 wire  [127:0] READ_DATA;
 				 
-				 //SIGNAL FOR DECODER-AXI4 MASTER
+				 //SIGNALS FOR DECODER-AXI4 MASTER
 				 wire                    wr_trn_en;			  
 				 wire                    rd_trn_en;
 				 wire                    wr_rsp_en;			  
 				 wire                    rd_rsp_en;
 				 wire  [adr_wid-1:0]     awaddr; 
-             wire  [(id_wid-4)-1:0]  txn_id_w;				 
-             wire  [bst_wid-1:0]     awburst;
+                                 wire  [(id_wid-4)-1:0]  txn_id_w;				 
+                                 wire  [bst_wid-1:0]     awburst;
 				 wire  [siz_wid-1:0]     awsize;
 				 wire  [(len_wid-4)-1:0] awlen;
 				 wire  [loc_wid-1:0]     awlock;
 				 wire  [cach_wid-1:0]    awcache;
 				 wire  [prot_wid-1:0]    awprot;
 				 wire  [adr_wid-1:0]     araddr;
-             wire  [(id_wid-4)-1:0]  txn_id_r;		 
+                                 wire  [(id_wid-4)-1:0]  txn_id_r;		 
 				 wire  [(len_wid-4)-1:0] arlen;
 				 wire  [bst_wid-1:0]     arburst;          
 				 wire  [siz_wid-1:0]     arsize;
@@ -99,31 +99,32 @@ module Project_AXI4_Top # (
 				 wire  [cach_wid-1:0]    arcache;
 				 wire  [prot_wid-1:0]    arprot;
 				 wire  [data_wid-1:0]    wdata; 
-             wire  [strb_wid-1:0]    wstrb;				 				
+                                 wire  [strb_wid-1:0]    wstrb;				 				
 				 wire  [data_wid-1:0]    rdata; 
 				 wire  [(id_wid-4)-1:0]  rid;
-				 wire  [rsp_wid-1:0]     rresp;				 				
+				 wire  [rsp_wid-1:0]     rresp;
+                                 wire                    r_last;            				 
 				 wire  [rsp_wid-1:0]     bresp;
 				 wire  [(id_wid-4)-1:0]  bid;
-             wire                    write_data;				 
+                                 wire                    write_data;				 
 
 				 
 // INSTANTIATION OF WRITE FIFO 
-design_fifo DUT_FIFO (
-                    .clk          (clk),
-                    .rst          (rst),
-						  .wr_en        (wr_en),
-					     .wr_data      (wr_data),
-					     .full         (full),							
-					     .FIFO_EMPTY   (FIFO_EMPTY),
-					     .READ_DATA    (READ_DATA),
-					     .READ_ENABLE  (READ_ENABLE),
-				        .rd_en        (rd_en),
-				        .rd_data      (rd_data),
-				        .empty        (empty),								
-				        .FIFO_FULL    (FIFO_FULL),
-				        .WRITE_ENABLE (WRITE_ENABLE),
-				        .WRITE_DATA   (WRITE_DATA)
+design_fifo DUT_fifo (
+                  		    .clk          (clk),
+                    		    .rst          (rst),
+				    .wr_en        (wr_en),
+				    .wr_data      (wr_data),
+			            .full         (full),							
+				    .FIFO_EMPTY   (FIFO_EMPTY),
+			            .READ_DATA    (READ_DATA),
+				    .READ_ENABLE  (READ_ENABLE),
+				    .rd_en        (rd_en),
+				    .rd_data      (rd_data),
+				    .empty        (empty),								
+				    .FIFO_FULL    (FIFO_FULL),
+				    .WRITE_ENABLE (WRITE_ENABLE),
+				    .WRITE_DATA   (WRITE_DATA)
 				    );
 				   
 
@@ -134,17 +135,17 @@ decoder DUT_decoder (
                     .fifo_empty   (FIFO_EMPTY),
                     .fifo_full    (FIFO_FULL),
                     .fifo_rdata   (READ_DATA),
-            	     .read_enable  (READ_ENABLE),
-						  .fifo_wdata   (WRITE_DATA),	
-	                 .write_enable (WRITE_ENABLE),					                    
-		              .write_data   (write_data),								  
-				        .bresp        (bresp),
+            	    .read_enable  (READ_ENABLE),
+		    .fifo_wdata   (WRITE_DATA),	
+	            .write_enable (WRITE_ENABLE),					                    
+		    .write_data   (write_data),								  
+		    .bresp        (bresp),
                     .bid          (bid),
-					     .rid          (rid),
+		    .rid          (rid),
                     .rdata        (rdata),
                     .rresp        (rresp),
                     .wr_rsp_en    (wr_rsp_en),
-		              .rd_rsp_en    (rd_rsp_en),
+		    .rd_rsp_en    (rd_rsp_en),
                     .awaddr       (awaddr),
                     .txn_id_w     (txn_id_w),
                     .awburst      (awburst),
@@ -158,106 +159,103 @@ decoder DUT_decoder (
                     .araddr       (araddr),
                     .txn_id_r     (txn_id_r),
                     .arburst      (arburst),
-		              .arlen        (arlen),
-		              .arsize       (arsize),  
-		              .arlock       (arlock),
+		    .arlen        (arlen),
+		    .arsize       (arsize),  
+		    .arlock       (arlock),
                     .arcache      (arcache),
                     .arprot       (arprot),
-		              .wr_trn_en    (wr_trn_en),
-		              .rd_trn_en    (rd_trn_en)                            
+		    .wr_trn_en    (wr_trn_en),
+		    .rd_trn_en    (rd_trn_en)                            
 		   );
-				   
+	
+	
 // INSTANTIATION OF AXI_MASTER
-AXI_Master      #(.addr_width(32), .data_width(64))
+AXI_Master      #(.addr_width(32),
+                  .data_width(64)
+				 )
 						
-						DUT_axi (
+			    DUT_axi (
 								
-                    .ACLK         (ACLK),
-                    .ARESETn      (ARESETn),
+                    .AClk        (ACLK),
+                    .ARst        (ARESETn),
 					
-                    .AWID_a         (AWID_a),
-                    .AWADDR_a       (AWADDR_a),
-                    .AWLEN_a        (AWLEN_a),
-                    .AWSIZE_a       (AWSIZE_a),
-                    .AWBURST_a      (AWBURST_a),
-                    .AWVALID_a      (AWVALID_a),
-                    .AWREADY_a      (AWREADY_a),
-                    .AWLOCK_a       (AWLOCK_a),
-                    .AWCACHE_a      (AWCACHE_a),
-                    .AWPROT_a       (AWPROT_a), 
+                    .AWID        (AWID_a),
+                    .AWADDR      (AWADDR_a),
+                    .AWLEN       (AWLEN_a),
+                    .AWSIZE      (AWSIZE_a),
+                    .AWBURST     (AWBURST_a),
+                    .AWVALID     (AWVALID_a),
+                    .AWREADY     (AWREADY_a),
+                    .AWLOCK      (AWLOCK_a),
+                    .AWCACHE     (AWCACHE_a),
+                    .AWPROT      (AWPROT_a), 
 					
-                    .WID_a          (WID_a),   
-                    .WSTRB_a        (WSTRB_a),
-                    .WDATA_a        (WDATA_a),
-                    .WLAST_a        (WLAST_a),
-                    .WVALID_a       (WVALID_a),
-                    .WREADY_a       (WREADY_a),
+                    .WID         (WID_a),   
+                    .WSTRB       (WSTRB_a),
+                    .WDATA       (WDATA_a),
+                    .WLAST       (WLAST_a),
+                    .WVALID      (WVALID_a),
+                    .WREADY      (WREADY_a),
 					
-                    .BID_a          (BID_a),
-                    .BRESP_a        (BRESP_a),
-                    .BVALID_a       (BVALID_a),
-                    .BREADY_a       (BREADY_a),
+                    .BID         (BID_a),
+                    .BRESP       (BRESP_a),
+                    .BVALID      (BVALID_a),
+                    .BREADY      (BREADY_a),
                     
-                    .ARID_a         (ARID_a),
-                    .ARADDR_a       (ARADDR_a),
-                    .ARLEN_a        (ARLEN_a),
-                    .ARSIZE_a       (ARSIZE_a),
-                    .ARBURST_a      (ARBURST_a),
-                    .ARVALID_a      (ARVALID_a),
-                    .ARLOCK_a       (ARLOCK_a),
-                    .ARCACHE_a      (ARCACHE_a),
-                    .ARPROT_a       (ARPROT_a),
-                    .ARREADY_a      (ARREADY_a), 
+                    .ARID        (ARID_a),
+                    .ARADDR      (ARADDR_a),
+                    .ARLEN       (ARLEN_a),
+                    .ARSIZE      (ARSIZE_a),
+                    .ARBURST     (ARBURST_a),
+                    .ARVALID     (ARVALID_a),
+                    .ARLOCK      (ARLOCK_a),
+                    .ARCACHE     (ARCACHE_a),
+                    .ARPROT      (ARPROT_a),
+                    .ARREADY     (ARREADY_a), 
 					
-                    .RID_a          (RID_a),
-                    .RDATA_a        (RDATA_a),
-                    .RRESP_a        (RRESP_a),
-                    .RLAST_a        (RLAST_a),
-                    .RVALID_a       (RVALID_a),
-                    .RREADY_a       (RREADY_a), 
+                    .RID         (RID_a),
+                    .RDATA       (RDATA_a),
+                    .RRESP       (RRESP_a),
+                    .RLAST       (RLAST_a),
+                    .RVALID      (RVALID_a),
+                    .RREADY      (RREADY_a), 
 					
-                    .TXN_ID_W_dec   (txn_id_w),
-                    .AWADDR_dec     (awaddr),
-                    .AWLEN_dec      (awlen),
-                    .AWSIZE_dec     (awsize),
-                    .AWBURST_dec    (awburst),
-                    .AWLOCK_dec     (awlock),
-                    .AWCACHE_dec    (awcache),
-                    .AWPROT_dec     (awprot),
+                    .TXN_ID_W_d   (txn_id_w),
+                    .awaddr_d     (awaddr),
+                    .awlen_d      (awlen),
+                    .awsize_d     (awsize),
+                    .awburst_d    (awburst),
+                    .awlock_d     (awlock),
+                    .awcache_d    (awcache),
+                    .awprot_d     (awprot),
 					
-                    .WDATA_dec      (wdata),
-                    .WSTRB_dec      (wstrb),
+                    .wdata_d      (wdata),
+                    .wstrb_d      (wstrb),
 					
-                    .BRESP_dec      (bresp),
-                    .BID_dec        (bid),
-                    .WR_RSP_EN_dec  (wr_rsp_en),
-                    .WR_TRN_EN_dec  (wr_trn_en), 
+                    .bresp_d      (bresp),
+                    .bid_d        (bid),
+                    .wr_rsp_en_d  (wr_rsp_en),
+                    .wr_trn_en    (wr_trn_en), 
 					
-                    .TXN_ID_R_dec  (txn_id_r),
-                    .ARADDR_dec     (araddr),
-                    .ARLEN_dec      (arlen),
-                    .ARSIZE_dec     (arsize),
-                    .ARBURST_dec    (arburst),
-                    .ARLOCK_dec     (arlock),
-                    .ARCACHE_dec    (arcache),
-                    .ARPROT_dec     (arprot),
+                    .TXN_ID_R_d   (txn_id_r),
+                    .araddr_d     (araddr),
+                    .arlen_d      (arlen),
+                    .arsize_d     (arsize),
+                    .arburst_d    (arburst),
+                    .arlock_d     (arlock),
+                    .arcache_d    (arcache),
+                    .arprot_d     (arprot),
 					
-                    .RDATA_dec      (rdata),
-                    .RRESP_dec      (rresp),
-                    .RID_dec        (rid),
-                    .RD_RSP_EN_dec  (rd_rsp_en),
-						  .RLAST_dec		(			),
-                    .RD_TRN_EN_dec  (rd_trn_en)
-						  
+                    .rdata_d      (rdata),
+                    .rresp_d      (rresp),
+                    .rid_d        (rid),
+                    .rd_rsp_en_d  (rd_rsp_en),
+				    .r_last_d	  (r_last),
+                    .rd_trn_en    (rd_trn_en)					  
                             
                  );
 					  
 					  
 					  
 endmodule
-				 
-                 				   
-				 
-				 
-				 
 				 
