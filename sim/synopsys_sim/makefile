@@ -1,10 +1,10 @@
 all:
-        make clean; make sim; make clean;
+				make clean; make sim;
 
 VCS_CMD_RAND    = vcs -V -R  -full64 -sverilog +v2k -debug_access+all -ntb_opts uvm-1.2 -debug_pp +ntb_random_seed_automatic -override_timescale=1ps/1ps
 
 sim:
-        ${VCS_CMD_RAND} \
+				${VCS_CMD_RAND} \
         +incdir+../../src/globals/ \
         +incdir+../../src/verif/vip/axi_master_vip/ \
         +incdir+../../src/verif/vip/axi_slave_vip/ \
@@ -59,5 +59,5 @@ sim:
         # vsim -view waveform.wlf &
 
 clean:
-        rm -rf work/ transcript waveform.wlf
+				rm -rf work/ transcript waveform.wlf
 

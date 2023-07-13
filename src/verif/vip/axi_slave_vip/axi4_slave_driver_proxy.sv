@@ -418,5 +418,5 @@ task axi4_slave_driver_proxy::task_memory_write(inout axi4_slave_tx struct_write
 
 endtask : task_memory_write
 
-`endif:cal SetSyn("verilog")
+`endif//:cal SetSyn("verilog")
 

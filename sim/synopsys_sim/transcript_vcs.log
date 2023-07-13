@@ -1,0 +1,77 @@
+
+Warning-[DEBUG_DEP] Option will be deprecated
+  The option '-debug_pp' will be deprecated in a future release.  Please use 
+  '-debug_acc+pp+dmptf -debug_region+cell+encrypt' instead.
+
+Command: vcs -V -R -full64 -sverilog +v2k -debug_access+all -ntb_opts uvm-1.2 -debug_pp \
++ntb_random_seed_automatic -override_timescale=1ps/1ps +incdir+../../src/globals/ \
++incdir+../../src/verif/vip/axi_master_vip/ +incdir+../../src/verif/vip/axi_slave_vip/ \
++incdir+../../src/verif/bfm/read_fifo/ +incdir+../../src/verif/bfm/write_fifo/ +incdir+../../src/verif/bfm/write_fifo/fifo_interface \
++incdir+../../src/verif/tb/env/ +incdir+../../src/verif/tb/test/ +incdir+../../src/hdl_top/ \
++incdir+../../src/hdl_top/axi4_interface/ +incdir+../../src/hdl_top/master_agent_bfm/ \
++incdir+../../src/hdl_top/slave_agent_bfm/ +incdir+../../src/hvl_top/ +incdir+../../src/hvl_top/env/ \
++incdir+../../src/hvl_top/master/ +incdir+../../src/hvl_top/slave/ +incdir+../../src/hvl_top/test/ \
++incdir+../../src/hvl_top/testlists/ +incdir+../../src/hvl_top/env/virtual_sequencer/ \
++incdir+../../src/hvl_top/test/sequences/ +incdir+../../src/hvl_top/test/sequences/master_sequences/ \
++incdir+../../src/hvl_top/test/sequences/slave_sequences/ +incdir+../../src/hvl_top/test/virtual_sequences/ \
++incdir+../../src/hdl_top/axi4_interface/ ../../src/globals/axi4_globals_pkg.sv ../../src/hvl_top/master/axi4_master_pkg.sv \
+../../src/hvl_top/slave/axi4_slave_pkg.sv ../../src/hvl_top/env/axi4_env_pkg.sv ../../src/hdl_top/axi4_interface/axi4_if.sv \
+../../src/hdl_top/master_agent_bfm/axi4_master_driver_bfm.sv ../../src/hdl_top/master_agent_bfm/axi4_master_monitor_bfm.sv \
+../../src/hdl_top/master_agent_bfm/axi4_master_agent_bfm.sv ../../src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv \
+../../src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv ../../src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv \
+../../src/verif/bfm/write_fifo/fifo_interface/fifo_interface.sv ../../src/hvl_top/test/sequences/master_sequences/axi4_master_seq_pkg.sv \
+../../src/hvl_top/test/sequences/slave_sequences/axi4_slave_seq_pkg.sv ../../src/hvl_top/test/virtual_sequences/axi4_virtual_seq_pkg.sv \
+../../src/hvl_top/test/axi4_test_pkg.sv ../../src/verif/tb/top.sv +UVM_VERBOSITY=MEDIUM \
++plusarg_ignore -l transcript_vcs.log
+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/linux64/bin/vcs1 -Mcc=gcc -Mcplusplus=g++ \
+-Masflags= -Mcfl= -pipe -DVCSMX -DUVM_DPI_DO_TYPE_CHECK -fPIC -O -I/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/include \
+-Mxllcflags= -Mxcflags= -pipe -DVCSMX -DUVM_DPI_DO_TYPE_CHECK -fPIC -I/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/include \
+-Mldflags= -rdynamic  -Mout=simv -Mamsrun="" -Mvcsaceobjs="" -Mobjects=" /hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/linux64/lib/libvirsim.so \
+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/linux64/lib/liberrorinf.so \
+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/linux64/lib/libsnpsmalloc.so \
+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/linux64/lib/libvfs.so " -Mexternalobj= \
+-Msaverestoreobj=/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/linux64/lib/vcs_save_restore_new.o \
+-Mcrt0= -Mcrtn="" -Mcsrc="/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/dpi/uvm_dpi.cc \
+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/verdi/dpi/uvm_verdi_dpi.cpp \
+" -Msyslibs=/hwetools/synosys/installed_tools/verdi/Q-2020.03-SP2-8/share/PLI/VCS/LINUX64/pli.a \
+-ldl  -l transcript_vcs.log +define+UVM_VERDI_VIF_RECORD +define+UVM_VCS_RECORD +incdir+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/vcs \
+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/uvm_pkg.sv /hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/vcs/uvm_custom_install_vcs_recorder.sv \
++incdir+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/verdi /hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/verdi/uvm_custom_install_verdi_recorder.sv \
+-Xvcs_run_simv=1 -V -full64 +v2k -debug_access+all +vpi +vcsd1 +itf+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/linux64/lib/vcsdp_lite.tab \
+-ntb_opts uvm-1.2 +incdir+/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/ \
+-Xcbug=0x1 +ntb_random_seed_automatic -override_timescale=1ps/1ps +UVM_VERBOSITY=MEDIUM \
++plusarg_ignore -picarchive +cli+1 -debug=1 +memcbk -P /hwetools/synosys/installed_tools/verdi/Q-2020.03-SP2-8/share/PLI/VCS/LINUX64/verdi.tab \
+-fsdb -sverilog +vpi -gen_obj +incdir+../../src/globals/ +incdir+../../src/verif/vip/axi_master_vip/ \
++incdir+../../src/verif/vip/axi_slave_vip/ +incdir+../../src/verif/bfm/read_fifo/ \
++incdir+../../src/verif/bfm/write_fifo/ +incdir+../../src/verif/bfm/write_fifo/fifo_interface \
++incdir+../../src/verif/tb/env/ +incdir+../../src/verif/tb/test/ +incdir+../../src/hdl_top/ \
++incdir+../../src/hdl_top/axi4_interface/ +incdir+../../src/hdl_top/master_agent_bfm/ \
++incdir+../../src/hdl_top/slave_agent_bfm/ +incdir+../../src/hvl_top/ +incdir+../../src/hvl_top/env/ \
++incdir+../../src/hvl_top/master/ +incdir+../../src/hvl_top/slave/ +incdir+../../src/hvl_top/test/ \
++incdir+../../src/hvl_top/testlists/ +incdir+../../src/hvl_top/env/virtual_sequencer/ \
++incdir+../../src/hvl_top/test/sequences/ +incdir+../../src/hvl_top/test/sequences/master_sequences/ \
++incdir+../../src/hvl_top/test/sequences/slave_sequences/ +incdir+../../src/hvl_top/test/virtual_sequences/ \
++incdir+../../src/hdl_top/axi4_interface/ ../../src/globals/axi4_globals_pkg.sv ../../src/hvl_top/master/axi4_master_pkg.sv \
+../../src/hvl_top/slave/axi4_slave_pkg.sv ../../src/hvl_top/env/axi4_env_pkg.sv ../../src/hdl_top/axi4_interface/axi4_if.sv \
+../../src/hdl_top/master_agent_bfm/axi4_master_driver_bfm.sv ../../src/hdl_top/master_agent_bfm/axi4_master_monitor_bfm.sv \
+../../src/hdl_top/master_agent_bfm/axi4_master_agent_bfm.sv ../../src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv \
+../../src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv ../../src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv \
+../../src/verif/bfm/write_fifo/fifo_interface/fifo_interface.sv ../../src/hvl_top/test/sequences/master_sequences/axi4_master_seq_pkg.sv \
+../../src/hvl_top/test/sequences/slave_sequences/axi4_slave_seq_pkg.sv ../../src/hvl_top/test/virtual_sequences/axi4_virtual_seq_pkg.sv \
+../../src/hvl_top/test/axi4_test_pkg.sv ../../src/verif/tb/top.sv  
+                         Chronologic VCS (TM)
+      Version Q-2020.03-SP2-8_Full64 -- Tue Jun 27 09:54:11 2023
+               Copyright (c) 1991-2020 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+
+Warning-[RSPAI] Run simv switch found in command line
+  Directly run simulation switch '-R' found in command line, and all plus 
+  arguments specified will be passed to run-time.
+  So the switch 'plusarg_ignore' will be ignored.
+
+CPU time: .192 seconds to compile

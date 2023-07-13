@@ -534,5 +534,5 @@ function void axi4_slave_seq_item_converter::do_print(uvm_printer printer);
 
 endfunction : do_print
 
-`endif:cal SetSyn("vgrindefs")
+`endif//:cal SetSyn("vgrindefs")
 

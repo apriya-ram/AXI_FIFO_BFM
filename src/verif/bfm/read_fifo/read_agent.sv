@@ -5,6 +5,7 @@
 // Class: read_fifo_agent
 // <Description_here>
 //--------------------------------------------------------------------------------------------
+
 class read_fifo_agent extends uvm_component;
   `uvm_component_utils(read_fifo_agent)
 
@@ -42,7 +43,7 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 function void read_fifo_agent::build_phase(uvm_phase phase);
   super.build_phase(phase);
-read_monitor=read_fifo_monitor:;type_id::create("read_monitor",this)
+  read_monitor=read_fifo_monitor::type_id::create("read_monitor",this);
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------

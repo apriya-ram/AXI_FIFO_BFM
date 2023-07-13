@@ -1,7 +1,7 @@
 `ifndef AXI_BURST_TYPE_SEQ_INCLUDED_
 `define AXI_BURST_TYPE_SEQ_INCLUDED_
 
-typdef enum bit[1:0] { FIXED, INCR, WRAP } B_TYPE;
+typedef enum bit[1:0] { FIXED, INCR, WRAP } B_TYPE;
 //--------------------------------------------------------------------------------------------
 // Class: axi_burst_type_seq 
 // creating axi_burst__type_seq class extends from fifo_bfm_base_seq
@@ -53,7 +53,7 @@ task axi_burst_type_seq::body();
   //else
             assert(pkt.randomize());
   finish_item(pkt);
-  end
+  //end
 
 endtask : body
 

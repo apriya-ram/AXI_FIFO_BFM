@@ -89,5 +89,5 @@ function void axi4_slave_agent_config::do_print(uvm_printer printer);
          
 endfunction : do_print
 
-`endif:cal SetSyn("verilog")
+`endif//:cal SetSyn("verilog")
 

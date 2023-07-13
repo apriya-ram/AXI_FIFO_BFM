@@ -46,5 +46,5 @@ endfunction: from_class
   printer.print_field("max_address",axi4_cfg.max_address,$bits(axi4_cfg.max_address),UVM_HEX);
  endfunction : do_print                                                                              
                                                                                                 
-`endif:cal SetSyn("verilog")
+`endif//:cal SetSyn("verilog")
 
