@@ -259,5 +259,5 @@ task axi4_slave_monitor_proxy::axi4_slave_read_data();
   end
 endtask
 
-`endif:cal SetSyn("verilog")
+`endif//:cal SetSyn("verilog")
 

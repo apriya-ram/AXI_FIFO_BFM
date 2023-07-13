@@ -4,9 +4,9 @@ class fifo_scoreboard extends uvm_scoreboard;
   //---------------------------------------
   //Analysis import declaration
   //---------------------------------------
-  uvm_analysis_imp#(fifo_seq_item, fifo_scoreboard) mon_imp;
+  uvm_analysis_imp#(fifo_sequence_item, fifo_scoreboard) mon_imp;
   
-  fifo_seq_item que[$];
+  fifo_sequence_item que[$];
   bit [7:0]mem[7:0];
   
   //---------------------------------------
@@ -26,13 +26,13 @@ class fifo_scoreboard extends uvm_scoreboard;
   //---------------------------------------
   //Write function implemetation
   //---------------------------------------
- function void write(fifo_seq_item trans);
+ function void write(fifo_sequence_item trans);
    que.push_back(trans); 
   endfunction 
   int i,j;
   virtual task run_phase(uvm_phase phase);
     forever begin
-    fifo_seq_item wr_trans;
+    fifo_sequence_item wr_trans;
     wait(que.size()>0);
       wr_trans=que.pop_front();
       if(wr_trans.wr==1) begin

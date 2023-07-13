@@ -10,13 +10,13 @@ class fifo_bfm_monitor extends uvm_component;
 
    //variable intf
    //Defining virtual interface
-   virtual fifo_interface intf;
+   virtual fifo_if intf;
 
    //variable pkt
    //Instantiating a sequence item packet
-   write_fifo_seq_item pkt;
+   fifo_sequence_item pkt;
 
-   uvm_analysis_port #(write_fifo_seq_item)item_collected_port;
+   uvm_analysis_port #(fifo_sequence_item)item_collected_port;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -24,8 +24,8 @@ class fifo_bfm_monitor extends uvm_component;
   extern function new(string name = "fifo_bfm_monitor", uvm_component parent = null);
   extern virtual function void build_phase(uvm_phase phase);
   extern virtual function void connect_phase(uvm_phase phase);
-  extern virtual function void end_of_elaboration_phase(uvm_phase phase);
-  extern virtual function void start_of_simulation_phase(uvm_phase phase);
+  //extern virtual function void end_of_elaboration_phase(uvm_phase phase);
+  //extern virtual function void start_of_simulation_phase(uvm_phase phase);
   extern virtual task run_phase(uvm_phase phase);
 
 endclass : fifo_bfm_monitor
@@ -53,7 +53,7 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 function void fifo_bfm_monitor::build_phase(uvm_phase phase);
   super.build_phase(phase);
-  uvm_congig_db#(virtual fifo_if)::get(this,"","vif",intf);
+  uvm_config_db#(virtual fifo_if)::get(this,"","vif",intf);
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
@@ -77,15 +77,17 @@ endfunction : connect_phase
 task fifo_bfm_monitor::run_phase(uvm_phase phase);
 
   super.run_phase(phase);
-  pkt=write_fifo_seq_item::type_id::create("pkt");
+  pkt=fifo_sequence_item#()::type_id::create("pkt");
   @(posedge intf.clk);
   forever begin
   @(posedge intf.clk);
-  pkt.wr<=intf.wr;
-  pkt.rd<=intf.rd;
-  pkt.data_in<=intf.data_in;
+  /*
+  pkt.wr<=intf.wr_en;
+  pkt.rd<=intf.rd_en;
+  pkt.data_in<=intf.wr_data;
+  */
   item_collected_port.write(pkt);
-  pkt.display("Monitor received the data");
+  $display("Monitor received the data");
   end
 
 endtask : run_phase

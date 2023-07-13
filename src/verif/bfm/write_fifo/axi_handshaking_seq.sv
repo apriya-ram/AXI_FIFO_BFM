@@ -1,12 +1,12 @@
-`define AXI_HANDSHAKING_SEQ included_
-`ifndef AXI_HANDSHAKING_SEQ_included_
+`define AXI_HANDSHAKING_SEQ_INCLUDED_
+`ifndef AXI_HANDSHAKING_SEQ_INCLUDED_
 
 class axi_handshaking_seq extends fifo_bfm_base_seq;
 
 
 //      factory Registration
 
-        'uvm_object_utils(axi_handshaking_seq)
+        `uvm_object_utils(axi_handshaking_seq)
 
 //      Declare the AXI packet
 
@@ -22,7 +22,7 @@ class axi_handshaking_seq extends fifo_bfm_base_seq;
         extern task body();
 
 endclass:axi_handshaking_seq
-\
+
 //...............................................................................................
 //      Constructor new: 
 //      Initialises the fifosequence class object
@@ -34,7 +34,7 @@ function axi_handshaking_seq :: new (string name = "axi_handshaking_seq");
         super.new(name);
 endfunction:new
 
-task axi_handshaking_seq body();
+task axi_handshaking_seq::body();
                 super.body();
                 pkt = axi_handshaking_seq :: type_id :: create("pkt");
                 start.item(pkt);
@@ -56,7 +56,7 @@ task axi_handshaking_seq body();
                 else if (AxREADY==1 && AxVALID==1)
                         property ready_with_valid
                         @ (posedge clk)
-                                $rose (AXREADY) |= [0:n] Srose (AxVALID);
+                                $rose (AXREADY) |=> [0:n] $rose (AxVALID);
                         endproperty
                 end
 

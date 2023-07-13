@@ -93,5 +93,5 @@ task axi4_slave_write_sequencer::run_phase(uvm_phase phase);
 
 endtask : run_phase
 
-`endif:cal SetSyn("verilog")
+`endif//:cal SetSyn("verilog")
 

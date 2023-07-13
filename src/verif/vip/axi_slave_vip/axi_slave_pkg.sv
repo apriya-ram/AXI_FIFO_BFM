@@ -15,6 +15,8 @@ package axi4_slave_pkg;
 
   // Import axi4_globals_pkg 
   import axi4_globals_pkg::*;
+  import write_fifo_pkg::*;
+  import read_fifo_pkg::*;
 
   //-------------------------------------------------------
   // Include all other files
@@ -32,5 +34,5 @@ package axi4_slave_pkg;
   
 endpackage : axi4_slave_pkg
 
-`endif:cal SetSyn("verilog")
+`endif
 
