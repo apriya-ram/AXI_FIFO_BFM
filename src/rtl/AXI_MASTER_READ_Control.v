@@ -76,8 +76,8 @@ module AXI_MASTER_READ_Control	#(parameter  addr_width=32,
 							
 
 reg			[addr_width-1	:	0]				ar_addr;        
-reg			[7	:	0]								ar_len;  
-reg			[7	:	0]								ar_id;  
+reg			[3	:	0]								ar_len;  
+reg			[3	:	0]								ar_id;  
 reg			[2	:	0]								ar_size;
 reg			[1	:	0]								ar_burst;
 reg			[1	:	0]								arlock;   
@@ -184,9 +184,9 @@ begin
 	 else
 	  begin
 		 araddr_r				<=		araddr_d;     
-		 TXN_ID_R_r				<=		{4'b0,TXN_ID_R_d};
+		 TXN_ID_R_r				<=		TXN_ID_R_d;
 		 arburst_r				<=		arburst_d;
-		 arlen_r					<=		{4'b0,arlen_d};
+		 arlen_r					<=	arlen_d;
 		 arsize_r				<=		arsize_d;
 		 arlock_r				<=		arlock_d;
 		 arcache_r				<=		arcache_d;
@@ -414,3 +414,4 @@ end
 
 
 endmodule
+
