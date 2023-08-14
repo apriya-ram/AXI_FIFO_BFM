@@ -27,7 +27,7 @@ assign full =(counter==DEPTH);
  
 always @ (posedge clk or negedge rst)
 begin 
-    if (rst)
+    if (!rst)
     begin
       wr_ptr<='d0;
       rd_ptr<='d0;
@@ -41,22 +41,16 @@ begin
           wr_ptr<=wr_ptr+1;
           counter<=counter+1;
       end
+
      else if(rd_en && !wr_en && !empty)     //FIFO Read logic
        begin 
           rd_data<= mem[rd_ptr];
           rd_ptr<=rd_ptr+1;
           counter<=counter-1;
        end
-     else if(rd_en && wr_en)        //both read and write
-
-       begin
-         mem[wr_ptr]<=wr_data;
-         wr_ptr<=wr_ptr+1;
-         rd_data<= mem[rd_ptr];
-         rd_ptr<=rd_ptr+1;
-         counter<=counter;
-       end
+     
 	end
 end
 
 endmodule     
+

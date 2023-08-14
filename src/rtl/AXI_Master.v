@@ -24,7 +24,7 @@ module AXI_Master #(parameter  addr_width=32,
 						 (
 						   /////////AXI Global signals clock and reset
                      input							AClk,
-							input							ARst,
+							input							ARstn,
 							
 							/////////////AXI Write Address signals
 							output	[7	:	0]								AWID,
@@ -33,28 +33,28 @@ module AXI_Master #(parameter  addr_width=32,
 							output	[2	:	0]								AWSIZE,
 							output	[1	:	0]								AWBURST,
 							output											AWVALID,
-							input												AWREADY,
+							input											AWREADY,
 							output	[1	:	0]								AWLOCK,
 							output	[1	:	0]								AWCACHE,
 							output	[2	:	0]								AWPROT,
 							
 							////////AXI Write Data channel signals
-							output	[7	:	0]								WID,   
+							output	[3	:	0]								WID,   
 							output	[7	:	0]								WSTRB,
-							output	[data_width-1	:	0]				WDATA,
+							output	[data_width-1	:	0]				    WDATA,
 							output											WLAST,
 							output											WVALID,
-							input												WREADY,
+							input											WREADY,
 							
 							/////////AXI Write Response  channel signals
-							input		[3	:	0]								BID,
-							input		[1	:	0]								BRESP,
-							input												BVALID,
+							input		[3	:	0]							BID,
+							input		[1	:	0]							BRESP,
+							input											BVALID,
 							output											BREADY,
 							
 							/////////AXI READ CHannel signals
-							output	[7	:	0]								ARID,
-							output	[addr_width-1	:	0]				ARADDR,
+							output	[3	:	0]								ARID,
+							output	[addr_width-1	:	0]				    ARADDR,
 							output	[7	:	0]								ARLEN,
 							output	[2	:	0]								ARSIZE,
 							output	[1	:	0]								ARBURST,
@@ -62,29 +62,29 @@ module AXI_Master #(parameter  addr_width=32,
 							output	[1	:	0]								ARLOCK,
 							output	[1	:	0]								ARCACHE,
 							output	[2	:	0]								ARPROT,
-							input												ARREADY,
+							input											ARREADY,
 							
 							/////////AXI READ Data signals
-							input		[7	:	0]								RID,
+							input		[3	:	0]							RID,
 							input		[data_width-1	:	0]				RDATA,
-							input		[1	:	0]								RRESP,
-							input												RLAST,
-							input												RVALID,
+							input		[1	:	0]							RRESP,
+							input											RLAST,
+							input											RVALID,
 							output											RREADY,
 							
 							////////////Decoder Interface   
 																		//////////write control and data from decoder
-							input		[3	:	0]								TXN_ID_W_d,
+							input		[3	:	0]							TXN_ID_W_d,
 							input		[addr_width-1	:	0]				awaddr_d,
-							input		[7	:	0]								awlen_d, 
-							input		[2	:	0]								awsize_d,
-							input		[1	:	0]								awburst_d,
-							input		[1	:	0]								awlock_d,
-							input		[1	:	0]								awcache_d,
-							input		[2	:	0]								awprot_d,
+							input		[7	:	0]							awlen_d, 
+							input		[2	:	0]							awsize_d,
+							input		[1	:	0]							awburst_d,
+							input		[1	:	0]							awlock_d,
+							input		[1	:	0]							awcache_d,
+							input		[2	:	0]							awprot_d,
 							
 							input		[data_width-1	:	0]				wdata_d,
-						   input		[7	:	0]								wstrb_d,
+						    input		[7	:	0]							wstrb_d,
 							
 							output	[1	:	0]								bresp_d,
 							output	[3	:	0]								bid_d,
@@ -123,7 +123,7 @@ AXI_MASTER_WRITE__CONTROL  #(.addr_width(32), .data_width(64)) AXI_WRITE_CONTROL
 						  (
 						   /////////AXI Global signals clock and reset
                      	.AClk(AClk),
-								.ARst(ARst),
+								.ARst(ARstn),
 						
 							/////////////AXI Write Address signals
 								.AWID(AWID),           
@@ -179,7 +179,7 @@ AXI_MASTER_READ_Control	#(.addr_width(32), .data_width(64)) AXI_READ_CONTROL
 						 (
 						   /////////AXI Global signals clock and reset
 								.AClk(AClk),
-								.ARst(ARst),
+								.ARst(ARstn),
 						/////////////////////////////AXI INTERFACE//////////////////////////////////////////////	
 						/////////AXI READ CHannel signals
 					
@@ -237,3 +237,4 @@ AXI_MASTER_READ_Control	#(.addr_width(32), .data_width(64)) AXI_READ_CONTROL
 
 
 endmodule
+
