@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module AXI_Master #(parameter  addr_width=32, 
-                    parameter  data_width=64
+                    parameter  data_width=32
 						  )      ///////
 						 (
 						   /////////AXI Global signals clock and reset
@@ -40,7 +40,7 @@ module AXI_Master #(parameter  addr_width=32,
 							
 							////////AXI Write Data channel signals
 							output	[3	:	0]								WID,   
-							output	[7	:	0]								WSTRB,
+							output	[3	:	0]								WSTRB,
 							output	[data_width-1	:	0]				    WDATA,
 							output											WLAST,
 							output											WVALID,
@@ -84,23 +84,25 @@ module AXI_Master #(parameter  addr_width=32,
 							input		[2	:	0]							awprot_d,
 							
 							input		[data_width-1	:	0]				wdata_d,
-						    input		[7	:	0]							wstrb_d,
+						    input		[3	:	0]							wstrb_d,
+							input                                           wvalid_d,
 							
 							output	[1	:	0]								bresp_d,
 							output	[3	:	0]								bid_d,
+							//output                                          bvalid,
 							output											wr_rsp_en_d,
 							
-							input												wr_trn_en,
+							input											wr_trn_en,
 							
 																			///////READ control from decoder
-							input		[3	:	0]								TXN_ID_R_d,
+							input		[3	:	0]							TXN_ID_R_d,
 							input		[addr_width-1	:	0]				araddr_d,
-							input		[7	:	0]								arlen_d, 
-							input		[2	:	0]								arsize_d,
-							input		[1	:	0]								arburst_d,
-							input		[1	:	0]								arlock_d,
-							input		[1	:	0]								arcache_d,
-							input		[2	:	0]								arprot_d,
+							input		[3	:	0]							arlen_d, 
+							input		[2	:	0]							arsize_d,
+							input		[1	:	0]							arburst_d,
+							input		[1	:	0]							arlock_d,
+							input		[1	:	0]							arcache_d,
+							input		[2	:	0]							arprot_d,
 							
 							output	[data_width-1	:	0]				rdata_d,
 							output	[1	:	0]								rresp_d,
@@ -119,7 +121,7 @@ module AXI_Master #(parameter  addr_width=32,
 //////////////////////////AXI WRITE CONTROL FSM MODULE ///////////////////////////
 
 					
-AXI_MASTER_WRITE__CONTROL  #(.addr_width(32), .data_width(64)) AXI_WRITE_CONTROL
+AXI_MASTER_WRITE__CONTROL  #(.addr_width(32), .data_width(32)) AXI_WRITE_CONTROL
 						  (
 						   /////////AXI Global signals clock and reset
                      	.AClk(AClk),
@@ -164,9 +166,11 @@ AXI_MASTER_WRITE__CONTROL  #(.addr_width(32), .data_width(64)) AXI_WRITE_CONTROL
 							   
 								.wdata_d(wdata_d),			
 								.wstrb_d(wstrb_d),
+								.wvalid_d(wvalid_d),
 							
 								.bresp_d(bresp_d),
 								.bid_d(bid_d),
+								//.bvalid(bvalid),
 								.wr_rsp_en_d(wr_rsp_en_d),
 								.wr_trn_en(wr_trn_en)
 							);
@@ -175,7 +179,7 @@ AXI_MASTER_WRITE__CONTROL  #(.addr_width(32), .data_width(64)) AXI_WRITE_CONTROL
 /////////////////////AXI READ FSM MODULE////////////////////////////////////
 
 
-AXI_MASTER_READ_Control	#(.addr_width(32), .data_width(64)) AXI_READ_CONTROL
+AXI_MASTER_READ_Control	#(.addr_width(32), .data_width(32)) AXI_READ_CONTROL
 						 (
 						   /////////AXI Global signals clock and reset
 								.AClk(AClk),
@@ -237,4 +241,3 @@ AXI_MASTER_READ_Control	#(.addr_width(32), .data_width(64)) AXI_READ_CONTROL
 
 
 endmodule
-
