@@ -1,7 +1,7 @@
 //TOP LEVEL MODULE FOR AXI4 PROJECT
 
 module Top_Module_AXI4#(
-						parameter  data_wid   = 64,
+						parameter  data_wid   = 32,
 						parameter  adr_wid    = 32,
 						parameter  id_wid     = 4,
 						parameter  len_wid    = 4,
@@ -105,20 +105,21 @@ module Top_Module_AXI4#(
 				 wire  [rsp_wid-1:0]     rresp;
                  wire                    rlast;				 
 				 wire  [rsp_wid-1:0]     bresp;
-				 wire  [(id_wid-4)-1:0]  bid;
-                 wire                    write_data;				 
+				 wire  [id_wid-1:0]      bid;
+                 wire                    write_data;
+				 wire                    wvalid_d;
 
 				 
 // INSTANTIATION OF WRITE FIFO 
 design_fifo DUT_FIFO (
-                    .clk          (clk),
-                    .rst          (rstn),
-						  .wr_en        (wr_en),
-					     .wr_data      (wr_data),
-					     .full         (full),							
-					     .FIFO_EMPTY   (FIFO_EMPTY),
-					     .READ_DATA    (READ_DATA),
-					     .READ_ENABLE  (READ_ENABLE),
+						.clk          (clk),
+						.rst          (rstn),
+						.wr_en        (wr_en),
+					    .wr_data      (wr_data),
+					    .full         (full),							
+					    .FIFO_EMPTY   (FIFO_EMPTY),
+					    .READ_DATA    (READ_DATA),
+					    .READ_ENABLE  (READ_ENABLE),
 				        .rd_en        (rd_en),
 				        .rd_data      (rd_data),
 				        .empty        (empty),								
@@ -156,7 +157,8 @@ my_decoder decoder (
                     .awcache      (awcache),
                     .awprot       (awprot),
                     .wdata        (wdata),
-                    .wstrb        (wstrb),          
+                    .wstrb        (wstrb),
+                    .wvalid       (wvalid_d),					
                     .araddr       (araddr),
                     .txn_id_r     (txn_id_r),
                     .arburst      (arburst),
@@ -229,6 +231,7 @@ AXI_Master      #(.addr_width(32), .data_width(64))
 					
                     .wdata_d      (wdata),
                     .wstrb_d      (wstrb),
+					.wvalid_d     (wvalid_d),
 					
                     .bresp_d      (bresp),
                     .bid_d        (bid),
@@ -263,4 +266,3 @@ endmodule
 				 
 				 
 				 
-

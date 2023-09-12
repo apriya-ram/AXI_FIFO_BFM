@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module AXI_MASTER_READ_Control	#(parameter  addr_width=32, 
-											  parameter  data_width=64
+											  parameter  data_width=32
 						               )
 						 (
 						   /////////AXI Global signals clock and reset
@@ -414,4 +414,3 @@ end
 
 
 endmodule
-
