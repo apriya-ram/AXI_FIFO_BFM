@@ -378,11 +378,11 @@ assign		WID			=			w_id;
 
 assign		WSTRB		=			w_strb;
 
-assign		WDATA		=			w_data;
+assign		WDATA		=			w_data_reg;
 
-assign		WLAST		=			w_last_reg;
+assign		WLAST		=			w_last;
 
-assign		WVALID		=			w_valid;
+assign		WVALID		=			w_valid_t;
 
 assign		BREADY		=			b_ready;
 
@@ -512,15 +512,7 @@ begin
 
 	end else begin
 
-		/*if (shift_decoder_data == 1'b1) begin			
-
-			rd_en <= 1'b1;
-
-		end else begin			
-
-			rd_en <= 1'b0;
-
-		end*/
+		
 
 		if(rd_en == 1'b1 && !fifo_empty)begin
 
@@ -566,7 +558,7 @@ assign wdata_buffer = wdata_d;
 
 assign wr_en = (wvalid_d == 1'b1 )? 1'b1: 1'b0;
 
-assign rd_en = (shift_decoder_data == 1'b1) ? 1'b1 : 1'b0;	
+assign rd_en = (shift_decoder_data == 1'b1 && rd_ptr==0) ? 1'b1 : (shift_decoder_data == 1'b1 && WREADY && rd_ptr>0)? 1'b1: 1'b0;	
 
 assign fifo_full = (buffer_count == 255) ? 1'b1 : 1'b0;
 
