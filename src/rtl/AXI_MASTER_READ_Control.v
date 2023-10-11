@@ -18,32 +18,32 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module AXI_MASTER_READ_Control	#(parameter  addr_width=32, 
-											  parameter  data_width=32
-						               )
+module AXI_MASTER_READ_Control	#( parameter  addr_width=32, 
+								   parameter  data_width=32
+						         )
 						 (
 						   /////////AXI Global signals clock and reset
-                     input							AClk,
-							input							ARst,
+							input											AClk,
+							input											ARst,
 						/////////////////////////////AXI INTERFACE//////////////////////////////////////////////	
 						/////////AXI READ CHannel signals
-						   output	[7	:	0]								ARID,
-							output	[addr_width-1	:	0]				ARADDR,
-							output	[7	:	0]								ARLEN,
+						   output	[3	:	0]								ARID,
+							output	[addr_width-1	:	0]					ARADDR,
+							output	[3	:	0]								ARLEN,
 							output	[2	:	0]								ARSIZE,
 							output	[1	:	0]								ARBURST,
 							output											ARVALID,
-							input												ARREADY,
+							input											ARREADY,
 							output	[1	:	0]								ARLOCK,
 							output	[1	:	0]								ARCACHE,
 							output	[2	:	0]								ARPROT,
 							
 							/////////AXI READ Data signals
 							input		[data_width-1	:	0]				RDATA,
-							input		[1	:	0]								RRESP,
-							input												RLAST,
-							input		[7	:	0]								RID,
-							input												RVALID,
+							input		[1	:	0]							RRESP,
+							input											RLAST,
+							input		[3	:	0]							RID,
+							input											RVALID,
 							output											RREADY,
 							
 							
@@ -53,29 +53,29 @@ module AXI_MASTER_READ_Control	#(parameter  addr_width=32,
 		//////////////////////////////Decoder Interface signals////////////////////////////
 		
 																				//////Read Address and Control information from Decoder
-		               input		[addr_width-1	:	0]				araddr_d,
-							input		[3	:	0]								TXN_ID_R_d,
-							input		[1	:	0]								arburst_d,
-							input		[3	:	0]								arlen_d,
-							input		[2	:	0]								arsize_d,
-							input		[1	:	0]								arlock_d,
-							input		[1	:	0]								arcache_d,
-							input		[2	:	0]								arprot_d,
+		                    input		[addr_width-1	:	0]				araddr_d,
+							input		[3	:	0]							TXN_ID_R_d,
+							input		[1	:	0]							arburst_d,
+							input		[3	:	0]							arlen_d,
+							input		[2	:	0]							arsize_d,
+							input		[1	:	0]							arlock_d,
+							input		[1	:	0]							arcache_d,
+							input		[2	:	0]							arprot_d,
 							
 																				/////Read DATA and Response to Decoder
-							output	[data_width-1	:	0]				rdata_d,						
+							output	[data_width-1	:	0]					rdata_d,						
 							output	[1	:	0]								rresp_d, 
 							output	[3	:	0]								rid_d,
 							output											rd_rsp_en_d,
-							output	reg									r_last_d,
+							output	reg										r_last_d,
 							
-							input												rd_trn_en
+							input											rd_trn_en
 							
 							);
 							
 							
 
-reg			[addr_width-1	:	0]				ar_addr;        
+reg			[addr_width-1	:	0]				    ar_addr;        
 reg			[3	:	0]								ar_len;  
 reg			[3	:	0]								ar_id;  
 reg			[2	:	0]								ar_size;
@@ -86,10 +86,10 @@ reg			[2	:	0]								arprot;
 reg													ar_valid;
 reg													ar_ready;
 
-reg			[addr_width-1	:	0]				rd_addr;
+reg			[addr_width-1	:	0]					rd_addr;
 reg													ar_valid_t;
 
-reg			[data_width-1	:	0]				r_data;			
+reg			[data_width-1	:	0]					r_data;			
 reg			[3	:	0]								r_id;
 reg													r_last;
 reg													r_valid;
@@ -99,24 +99,25 @@ reg			[1	:	0]								r_resp;
 reg													r_ready_t;
 reg													rd_rsp_en;
 
-wire			[7	:	0]								BL;
+wire		[7	:	0]							    BL;
 
-reg			[addr_width-1	:	0]				araddr_r;     
-reg			[7	:	0]								TXN_ID_R_r;
+reg			[addr_width-1	:	0]					araddr_r;     
+reg			[3	:	0]								TXN_ID_R_r;
 reg			[1	:	0]								arburst_r;
-reg			[7	:	0]								arlen_r;
+reg			[3	:	0]								arlen_r;
 reg			[2	:	0]								arsize_r;
 reg			[1	:	0]								arlock_r;
 reg			[1	:	0]								arcache_r;
 reg			[2	:	0]								arprot_r;   
-reg			[data_width-1	:	0]				r_data_r;	
-reg			[7	:	0]								r_id_r;
+reg			[data_width-1	:	0]					r_data_r;	
+reg			[3	:	0]								r_id_r;
 reg			[1	:	0]								r_resp_r;
 reg													rd_rsp_en_r;
 
 reg			[7	:	0]								beat_cnt;
 reg			[7	:	0]								beat_cnt_reg;
 reg													rd_trn_en_reg;
+reg													rd_trn_en_reg1;
 
 reg													address_en;
 reg													data_en;
@@ -130,21 +131,21 @@ localparam	[1	:	0]								INCR_Burst		=		2'b01;
 localparam	[1	:	0]								Wrap_Burst		=		2'b10;
 
 
-localparam	[7	:	0]								Max_burst_len	=		8'hff;  //////256 for AXI 4
+localparam	[3	:	0]								Max_burst_len	=		4'hf;  //////256 for AXI 4
 																							  //////16 for AXI 3
 																							  
-reg 			[2	: 	0]								pst,nst;
+reg 		[2	: 	0]							    pst,nst;
 
-localparam	[1	:	0]								Idle				=		2'b00;
+localparam	[1	:	0]								Idle			=		2'b00;
 localparam	[1	:	0]								Addr_st			=		2'b01;
 localparam	[1	:	0]								Data_st			=		2'b10;
 
 //////////////////////////////////////
 //////final AXI R CHANNEL OUTPUTS
-///
-assign		ARID			=			ar_id;						 				
+//////////////////////////////////////
+assign		ARID		=			ar_id;						 				
 assign		ARADDR		=			ar_addr;		
-assign		ARLEN			=			ar_len;
+assign		ARLEN		=			ar_len;
 assign		ARSIZE		=			ar_size;		
 assign		ARBURST		=			ar_burst;
 assign		ARVALID		=			ar_valid;
@@ -155,7 +156,7 @@ assign		RREADY		=			r_ready;
 
 ////////////////////////////////////////////////READ DATA and Response to Decoder
 assign      rresp_d		=			r_resp_r;
-assign		rid_d			=			r_id_r[3:0];
+assign		rid_d		=			r_id_r[3:0];
 assign		rd_rsp_en_d	=			rd_rsp_en_r;
 assign		rdata_d		=			r_data_r;
 
@@ -163,15 +164,15 @@ assign		rdata_d		=			r_data_r;
 
 //////////////////////////////////////////////////////////////////
 /////register the input address and burst controls
-//////
-always @(posedge AClk)
+/////////////////////////////////////////////////////////////////
+always @(posedge AClk or negedge ARst)
 begin
    if(!ARst)
 	  begin
-	    araddr_r				<=		{addr_width{1'bz}};
+	     araddr_r				<=		{addr_width{1'bz}};
 		 TXN_ID_R_r				<=		8'bz;
 		 arburst_r				<=		2'bz;
-		 arlen_r					<=		8'bz;
+		 arlen_r				<=		8'bz;
 		 arsize_r				<=		3'bz;
 		 arlock_r				<=		2'bz;
 		 arcache_r				<=		2'bz;
@@ -186,7 +187,7 @@ begin
 		 araddr_r				<=		araddr_d;     
 		 TXN_ID_R_r				<=		TXN_ID_R_d;
 		 arburst_r				<=		arburst_d;
-		 arlen_r					<=	arlen_d;
+		 arlen_r				<=	    arlen_d;
 		 arsize_r				<=		arsize_d;
 		 arlock_r				<=		arlock_d;
 		 arcache_r				<=		arcache_d;
@@ -200,21 +201,24 @@ end
 
 assign	BL					=		arlen_r	+	8'h01;			////burst length
 
-always @(posedge AClk)
+always @(posedge AClk or negedge ARst)
 begin
-   if(!ARst)
+   if(!ARst) begin
 	  rd_trn_en_reg		<=			  1'b0;
-	  else
-	    begin
+	  rd_trn_en_reg1    <=            1'b0;
+	end  else begin
 		   if(rd_trn_en)
 			  rd_trn_en_reg		<=			  1'b1;
 			  else
 			  rd_trn_en_reg		<=			  1'b0;
-		 end
+			  
+		   rd_trn_en_reg1  <= rd_trn_en_reg;	  
+	end
+		 
 end
 
 ///////////fsm sequenctial stage  
-always @(posedge AClk)
+always @(posedge AClk or negedge ARst)
 begin
    if(!ARst)
 	  pst				<=				Idle;
@@ -228,7 +232,7 @@ begin
    case(pst)
 	2'b00			:	begin														///idle   
 	                
-	                if(rd_trn_en_reg==1'b1)
+	                if(rd_trn_en_reg1==1'b1)
 						   nst			=		Addr_st;
 							else 
 							nst			=		Idle;
@@ -251,7 +255,7 @@ begin
 							 if((beat_cnt>1) && RVALID && (!RLAST))
 									nst			=		Data_st; 
 								else  if(RLAST )
-									nst			=		Addr_st;
+									nst			=		Idle;
 								
 	               
 						
@@ -267,21 +271,21 @@ begin
 end
 
 ///////////////////////////////////////FSM OUTPUT LOGIC
-always @(posedge AClk)
+always @(posedge AClk or negedge ARst)
 begin
 if(!ARst)
 begin
 
-		 ar_addr				<=		{addr_width{1'bz}};
+		 ar_addr			<=		{addr_width{1'bz}};
 		 ar_id				<=		8'bz;
 		 ar_burst			<=		2'bz;
 		 ar_len				<=		8'bz;
-		 ar_size				<=		3'bz;
+		 ar_size			<=		3'bz;
 		 arlock				<=		2'bz;
 		 ar_valid			<=		1'b0;
-		 arcache				<=		2'bz;
+		 arcache			<=		2'bz;
 		 arprot				<=		3'bz;
-		 r_ready				<=		1'b0;
+		 r_ready			<=		1'b0;
 		 
 		 r_data_r			<=		{data_width{1'bz}};
 		 r_id_r				<=		8'bz;
@@ -293,16 +297,16 @@ else
  begin
    case(pst)
 	2'b00			:	begin														
-	                ar_addr				<=		{addr_width{1'bz}};
+	                     ar_addr			<=		{addr_width{1'bz}};
 						 ar_id				<=		8'bz;
 						 ar_burst			<=		2'bz;
 						 ar_len				<=		8'bz;
-						 ar_size				<=		3'bz;
+						 ar_size			<=		3'bz;
 						 arlock				<=		2'bz;
 						 ar_valid			<=		1'b0;
-						 arcache				<=		2'bz;
+						 arcache			<=		2'bz;
 						 arprot				<=		3'bz;
-						 r_ready				<=		1'b0;
+						 r_ready			<=		1'b0;
 						 
 						 r_data_r			<=		{data_width{1'bz}};
 						 r_id_r				<=		8'bz;
@@ -314,16 +318,16 @@ else
 						
 	2'b01			:	begin							
 	
-						 ar_addr				<=		araddr_r;
+						 ar_addr			<=		araddr_r;
 						 ar_id				<=		{4'b0,TXN_ID_R_r};
 						 ar_burst			<=		arburst_r;
 						 ar_len				<=		arlen_r;
-						 ar_size				<=		arsize_r;
+						 ar_size			<=		arsize_r;
 						 arlock				<=		arlock_r;
 						 ar_valid			<=		1'b1;
-						 arcache				<=		arcache_r;
+						 arcache			<=		arcache_r;
 						 arprot				<=		arprot_r;
-						 r_ready				<=		1'b0;
+						 r_ready			<=		1'b0;
 						 r_data_r			<=		{data_width{1'bz}};
 						 r_id_r				<=		8'bz;
 						 r_resp_r			<=		2'bz;
@@ -334,19 +338,19 @@ else
 	               
 	2'b10			:	begin						/////receive single rdata or burst rdata 
 	                
-						 ar_addr				<=		{addr_width{1'bz}};
+						 ar_addr			<=		{addr_width{1'bz}};
 						 ar_id				<=		8'bz;
 						 ar_burst			<=		2'bz;
 						 ar_len				<=		8'bz;
-						 ar_size				<=		3'bz;
+						 ar_size			<=		3'bz;
 						 arlock				<=		2'bz;
 						 ar_valid			<=		1'b0;
-						 arcache				<=		2'bz;
+						 arcache			<=		2'bz;
 						 arprot				<=		3'bz;
-						 r_ready				<=		1'b1;
+						 r_ready			<=		1'b1;
 						 
 						 
-				   if(RVALID && (beat_cnt>0))
+				   if( RVALID && (beat_cnt>0))
 						begin
   						 r_data_r			<=		RDATA;
 						 r_id_r				<=		RID;
@@ -355,9 +359,9 @@ else
 						end
 					 else
 					   begin
-					    r_data_r			<=		r_data_r;
-						 r_id_r				<=		r_id_r;
-						 r_resp_r			<=		r_resp_r;
+					    r_data_r			<=		'hz;
+						 r_id_r				<=		'bz;
+						 r_resp_r			<=		'bz;
 						 rd_rsp_en_r		<=		1'b0;
 						end 
 										
@@ -369,19 +373,19 @@ else
 						
 	default		:	begin
 								ar_addr				<=		{addr_width{1'bz}};
-								ar_id					<=		8'bz;
-								ar_burst				<=		2'bz;
+								ar_id				<=		8'bz;
+								ar_burst			<=		2'bz;
 								ar_len				<=		8'bz;
 								ar_size				<=		3'bz;
 								arlock				<=		2'bz;
-								ar_valid				<=		1'b0;
+								ar_valid			<=		1'b0;
 								arcache				<=		2'bz;
 								arprot				<=		3'bz;
 								r_ready				<=		1'b0;
 		 
-								r_data_r				<=		{data_width{1'bz}};
+								r_data_r			<=		{data_width{1'bz}};
 								r_id_r				<=		8'bz;
-								r_resp_r				<=		2'bz;  
+								r_resp_r			<=		2'bz;  
 								rd_rsp_en_r			<=		1'b0;
 	               end	
  endcase						
@@ -391,7 +395,7 @@ end
 
   
 ////////Burst Beat counter logic for handling INCR or FIxed with respective RVALID and RRESP signal from AXI slave
-always @(posedge AClk)
+always @(posedge AClk or negedge ARst)
 begin
 if(!ARst)
   beat_cnt			<=		8'h0;
