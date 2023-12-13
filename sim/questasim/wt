@@ -1,0 +1,328 @@
+Reading pref.tcl
+
+# 10.6c
+
+# vsim -vopt work.top -voptargs="+acc=npr" -assertdebug "+UVM_TESTNAME=write_test" "+UVM_VERBOSITY=UVM_MEDIUM" -l write_test/write_test.log -sva -coverage -c -do "log -r /*; add wave -r /*; coverage save -onexit -assert -directive -cvg -codeAll write_test/write_test_coverage.ucdb; run -all; exit" -wlf write_test/waveform.wlf 
+# Start time: 22:20:18 on Nov 01,2023
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-2121) ../../src/axi_fifo_bfm/rtl/decoder.v(266): Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: (vopt-2121) ../../src/axi_fifo_bfm/rtl/decoder.v(267): Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: (vopt-2121) ../../src/axi_fifo_bfm/rtl/decoder.v(268): Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: (vopt-2121) ../../src/axi_fifo_bfm/rtl/decoder.v(269): Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: (vopt-2121) ../../src/axi_fifo_bfm/rtl/decoder.v(270): Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: (vopt-2121) ../../src/axi_fifo_bfm/rtl/decoder.v(271): Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
+# ** Warning: ../../src/axi_fifo_bfm/rtl/decoder.v(310): (vopt-2182) 'eop_reg' might be read before written in always_comb or always @* block.
+# ** Note: (vopt-143) Recognized 1 FSM in module "AXI_MASTER_WRITE__CONTROL(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "AXI_MASTER_READ_Control(fast)".
+# ** Warning: ../../src/axi_fifo_bfm/top/top.sv(57): (vopt-2685) [TFMPC] - Too few port connections for 'project_axi4_top'.  Expected 46, found 45.
+# ** Warning: ../../src/axi_fifo_bfm/top/top.sv(57): (vopt-2718) [TFMPC] - Missing connection for port 'WID_a'.
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.fifo_if(fast)
+# Loading work.axi4_globals_pkg(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.write_fifo_pkg(fast)
+# Loading work.sequence_pkg(fast)
+# Loading work.axi4_slave_driver_bfm(fast)
+# Loading work.axi4_slave_monitor_bfm(fast)
+# Loading work.axi4_slave_pkg(fast)
+# Loading work.env_package(fast)
+# Loading work.test_pkg(fast)
+# Loading work.top(fast)
+# Loading work.axi4_if_sv_unit(fast)
+# Loading work.axi4_if(fast)
+# Loading work.fifo_if(fast)
+# Loading work.Project_AXI4_Top(fast)
+# Loading work.design_fifo(fast)
+# Loading work.sync_fifo(fast)
+# Loading work.decoder(fast)
+# Loading work.AXI_Master(fast)
+# Loading work.AXI_MASTER_WRITE__CONTROL(fast)
+# Loading work.AXI_MASTER_READ_Control(fast)
+# Loading work.axi4_slave_agent_bfm(fast)
+# Loading work.axi4_slave_driver_bfm_sv_unit(fast)
+# Loading work.axi4_slave_driver_bfm(fast)
+# Loading work.slave_assertions_sv_unit(fast)
+# Loading work.slave_assertions(fast)
+# Loading work.axi4_slave_monitor_bfm_sv_unit(fast)
+# Loading work.axi4_slave_monitor_bfm(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (8) does not match connection size (4) for port 'RID_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(30).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (64) does not match connection size (32) for port 'RDATA_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(31).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (8) does not match connection size (4) for port 'BID_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(35).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (8) does not match connection size (4) for port 'AWID_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (8) does not match connection size (4) for port 'AWLEN_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(43).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (8) does not match connection size (4) for port 'ARID_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(50).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (8) does not match connection size (4) for port 'ARLEN_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(52).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (64) does not match connection size (32) for port 'WDATA_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(60).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/top/top.sv(57): [PCDPC] - Port size (8) does not match connection size (4) for port 'WSTRB_a'. The port definition is at: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(61).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top File: ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(131): [PCDPC] - Port size (4) does not match connection size (2) for port 'bresp'. The port definition is at: ../../src/axi_fifo_bfm/rtl/decoder.v(22).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_decoder File: ../../src/axi_fifo_bfm/rtl/decoder.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(131): [PCDPC] - Port size (4) does not match connection size (8) for port 'wstrb'. The port definition is at: ../../src/axi_fifo_bfm/rtl/decoder.v(51).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_decoder File: ../../src/axi_fifo_bfm/rtl/decoder.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(131): [PCDPC] - Port size (10) does not match connection size (2) for port 'arlock'. The port definition is at: ../../src/axi_fifo_bfm/rtl/decoder.v(59).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_decoder File: ../../src/axi_fifo_bfm/rtl/decoder.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(176): [PCDPC] - Port size (4) does not match connection size (8) for port 'BID'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_Master.v(50).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi File: ../../src/axi_fifo_bfm/rtl/AXI_Master.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(176): [PCDPC] - Port size (8) does not match connection size (4) for port 'awlen_d'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_Master.v(79).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi File: ../../src/axi_fifo_bfm/rtl/AXI_Master.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(176): [PCDPC] - Port size (8) does not match connection size (4) for port 'arlen_d'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_Master.v(98).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi File: ../../src/axi_fifo_bfm/rtl/AXI_Master.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/Top_Module_AXI4.v(176): [PCDPC] - Port size (8) does not match connection size (4) for port 'rid_d'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_Master.v(107).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi File: ../../src/axi_fifo_bfm/rtl/AXI_Master.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/AXI_Master.v(122): [PCDPC] - Port size (8) does not match connection size (4) for port 'BID'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_WRITE_CONTROL.v(53).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi/AXI_WRITE_CONTROL File: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_WRITE_CONTROL.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/AXI_Master.v(122): [PCDPC] - Port size (4) does not match connection size (8) for port 'awlen_d'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_WRITE_CONTROL.v(63).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi/AXI_WRITE_CONTROL File: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_WRITE_CONTROL.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/AXI_Master.v(178): [PCDPC] - Port size (4) does not match connection size (8) for port 'arlen_d'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_READ_CONTROL.v(59).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi/AXI_READ_CONTROL File: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_READ_CONTROL.v
+# ** Warning: (vsim-3015) ../../src/axi_fifo_bfm/rtl/AXI_Master.v(178): [PCDPC] - Port size (4) does not match connection size (8) for port 'rid_d'. The port definition is at: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_READ_CONTROL.v(68).
+#    Time: 0 ps  Iteration: 0  Instance: /top/project_axi4_top/DUT_axi/AXI_READ_CONTROL File: ../../src/axi_fifo_bfm/rtl/AXI_MASTER_READ_CONTROL.v
+# ** Warning: (vsim-3015) ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(19): [PCDPC] - Port size (4) does not match connection size (2) for port 'awcache'. The port definition is at: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(19).
+#    Time: 0 ps  Iteration: 0  Instance: /top/genblk1[0]/axi4_slave_agent_bfm_h/axi4_slave_drv_bfm_h File: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv
+# ** Warning: (vsim-3015) ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(19): [PCDPC] - Port size (8) does not match connection size (4) for port 'arlen'. The port definition is at: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(43).
+#    Time: 0 ps  Iteration: 0  Instance: /top/genblk1[0]/axi4_slave_agent_bfm_h/axi4_slave_drv_bfm_h File: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv
+# ** Warning: (vsim-3015) ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(19): [PCDPC] - Port size (4) does not match connection size (2) for port 'arcache'. The port definition is at: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(47).
+#    Time: 0 ps  Iteration: 0  Instance: /top/genblk1[0]/axi4_slave_agent_bfm_h/axi4_slave_drv_bfm_h File: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv
+# ** Warning: (vsim-3015) ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(72): [PCDPC] - Port size (4) does not match connection size (2) for port 'awcache'. The port definition is at: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv(18).
+#    Time: 0 ps  Iteration: 0  Instance: /top/genblk1[0]/axi4_slave_agent_bfm_h/axi4_slave_mon_bfm_h File: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv
+# ** Warning: (vsim-3015) ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(72): [PCDPC] - Port size (8) does not match connection size (4) for port 'arlen'. The port definition is at: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv(42).
+#    Time: 0 ps  Iteration: 0  Instance: /top/genblk1[0]/axi4_slave_agent_bfm_h/axi4_slave_mon_bfm_h File: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv
+# ** Warning: (vsim-3015) ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(72): [PCDPC] - Port size (4) does not match connection size (2) for port 'arcache'. The port definition is at: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv(46).
+#    Time: 0 ps  Iteration: 0  Instance: /top/genblk1[0]/axi4_slave_agent_bfm_h/axi4_slave_mon_bfm_h File: ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv
+# ** Warning: (vsim-3764) ../../src/axi_fifo_bfm/write_fifo_agent//write_fifo_driver.sv(32): Stand-alone call to function 'get' treated as implicit void cast.
+#    Time: 0 ps  Iteration: 0  Region: /write_fifo_pkg::write_fifo_driver File: ../../src/axi_fifo_bfm/write_fifo_agent/write_fifo_pkg.sv
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# log -r /*
+# ** Error: Unable to lock WLF file "write_test/waveform.wlf". Retrying 1 times, errno 11
+# ** Error: Unable to lock WLF file "write_test/waveform.wlf". Retrying 2 times, errno 11
+# ** Error: Unable to lock WLF file "write_test/waveform.wlf". Retrying 3 times, errno 11
+# ** Error: Cannot lock WLF file: "write_test/waveform.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: write_test/waveform.wlf
+#           File in use by: johnshahid  Hostname: HweServer.mirafra.com  ProcessID: 25913
+#           Attempting to use alternate WLF file "write_test/wlfthI6By1".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: write_test/waveform.wlf
+#           Using alternate file: write_test/wlfthI6By1
+#  add wave -r /*
+#  coverage save -onexit -assert -directive -cvg -codeAll write_test/write_test_coverage.ucdb
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# HDL_TOP
+# UVM_INFO @ 0: reporter [RNTST] Running test write_test...
+# UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(85) @ 0: reporter [axi4 slave driver bfm] AXI4 SLAVE DRIVER BFM
+# UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_assertions.sv(70) @ 0: reporter [SLAVE_ASSERTIONS] SLAVE_ASSERTIONS
+# UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv(82) @ 0: reporter [axi4 slave monitor bfm] AXI4 SLAVE MONITOR BFM
+# UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(175) @ 0: reporter [axi4 slave agent bfm] AXI4 SLAVE AGENT BFM
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# ----------------------------------------------------------------------------------------
+# Name                                             Type                        Size  Value
+# ----------------------------------------------------------------------------------------
+# uvm_test_top                                     write_test                  -     @473 
+#   env_h                                          env                         -     @492 
+#     axi_slave_agent                              axi4_slave_agent            -     @510 
+#       axi4_slave_cov_h                           axi4_slave_coverage         -     @1214
+#         analysis_imp                             uvm_analysis_imp            -     @1221
+#       axi4_slave_drv_proxy_h                     axi4_slave_driver_proxy     -     @519 
+#         axi4_slave_read_addr_fifo_h              uvm_tlm_fifo #(T)           -     @730 
+#           get_ap                                 uvm_analysis_port           -     @761 
+#           get_peek_export                        uvm_get_peek_imp            -     @745 
+#           put_ap                                 uvm_analysis_port           -     @753 
+#           put_export                             uvm_put_imp                 -     @737 
+#         axi4_slave_read_data_in_fifo_h           uvm_tlm_fifo #(T)           -     @769 
+#           get_ap                                 uvm_analysis_port           -     @800 
+#           get_peek_export                        uvm_get_peek_imp            -     @784 
+#           put_ap                                 uvm_analysis_port           -     @792 
+#           put_export                             uvm_put_imp                 -     @776 
+#         axi4_slave_write_addr_fifo_h             uvm_tlm_fifo #(T)           -     @574 
+#           get_ap                                 uvm_analysis_port           -     @605 
+#           get_peek_export                        uvm_get_peek_imp            -     @589 
+#           put_ap                                 uvm_analysis_port           -     @597 
+#           put_export                             uvm_put_imp                 -     @581 
+#         axi4_slave_write_data_in_fifo_h          uvm_tlm_fifo #(T)           -     @613 
+#           get_ap                                 uvm_analysis_port           -     @644 
+#           get_peek_export                        uvm_get_peek_imp            -     @628 
+#           put_ap                                 uvm_analysis_port           -     @636 
+#           put_export                             uvm_put_imp                 -     @620 
+#         axi4_slave_write_data_out_fifo_h         uvm_tlm_fifo #(T)           -     @691 
+#           get_ap                                 uvm_analysis_port           -     @722 
+#           get_peek_export                        uvm_get_peek_imp            -     @706 
+#           put_ap                                 uvm_analysis_port           -     @714 
+#           put_export                             uvm_put_imp                 -     @698 
+#         axi4_slave_write_response_fifo_h         uvm_tlm_fifo #(T)           -     @652 
+#           get_ap                                 uvm_analysis_port           -     @683 
+#           get_peek_export                        uvm_get_peek_imp            -     @667 
+#           put_ap                                 uvm_analysis_port           -     @675 
+#           put_export                             uvm_put_imp                 -     @659 
+#         axi_read_rsp_port                        uvm_analysis_port           -     @566 
+#         axi_read_seq_item_port                   uvm_seq_item_pull_port      -     @550 
+#         axi_write_rsp_port                       uvm_analysis_port           -     @558 
+#         axi_write_seq_item_port                  uvm_seq_item_pull_port      -     @542 
+#         rsp_port                                 uvm_analysis_port           -     @534 
+#         seq_item_port                            uvm_seq_item_pull_port      -     @526 
+#       axi4_slave_mon_proxy_h                     axi4_slave_monitor_proxy    -     @1026
+#         axi4_slave_read_address_analysis_port    uvm_analysis_port           -     @1033
+#         axi4_slave_read_data_analysis_port       uvm_analysis_port           -     @1041
+#         axi4_slave_read_fifo_h                   uvm_tlm_analysis_fifo #(T)  -     @1167
+#           analysis_export                        uvm_analysis_imp            -     @1206
+#           get_ap                                 uvm_analysis_port           -     @1198
+#           get_peek_export                        uvm_get_peek_imp            -     @1182
+#           put_ap                                 uvm_analysis_port           -     @1190
+#           put_export                             uvm_put_imp                 -     @1174
+#         axi4_slave_write_address_analysis_port   uvm_analysis_port           -     @1049
+#         axi4_slave_write_address_fifo_h          uvm_tlm_analysis_fifo #(T)  -     @1073
+#           analysis_export                        uvm_analysis_imp            -     @1112
+#           get_ap                                 uvm_analysis_port           -     @1104
+#           get_peek_export                        uvm_get_peek_imp            -     @1088
+#           put_ap                                 uvm_analysis_port           -     @1096
+#           put_export                             uvm_put_imp                 -     @1080
+#         axi4_slave_write_data_analysis_port      uvm_analysis_port           -     @1057
+#         axi4_slave_write_data_fifo_h             uvm_tlm_analysis_fifo #(T)  -     @1120
+#           analysis_export                        uvm_analysis_imp            -     @1159
+#           get_ap                                 uvm_analysis_port           -     @1151
+#           get_peek_export                        uvm_get_peek_imp            -     @1135
+#           put_ap                                 uvm_analysis_port           -     @1143
+#           put_export                             uvm_put_imp                 -     @1127
+#         axi4_slave_write_response_analysis_port  uvm_analysis_port           -     @1065
+#       axi4_slave_read_seqr_h                     axi4_slave_read_sequencer   -     @917 
+#         rsp_export                               uvm_analysis_export         -     @924 
+#         seq_item_export                          uvm_seq_item_pull_imp       -     @1018
+#         arbitration_queue                        array                       0     -    
+#         lock_queue                               array                       0     -    
+#         num_last_reqs                            integral                    32    'd1  
+#         num_last_rsps                            integral                    32    'd1  
+#       axi4_slave_write_seqr_h                    axi4_slave_write_sequencer  -     @808 
+#         rsp_export                               uvm_analysis_export         -     @815 
+#         seq_item_export                          uvm_seq_item_pull_imp       -     @909 
+#         arbitration_queue                        array                       0     -    
+#         lock_queue                               array                       0     -    
+#         num_last_reqs                            integral                    32    'd1  
+#         num_last_rsps                            integral                    32    'd1  
+#     write_fifo_agent                             write_fifo_agent            -     @503 
+#       write_fifo_driver_h                        write_fifo_driver           -     @1351
+#         rsp_port                                 uvm_analysis_port           -     @1366
+#         seq_item_port                            uvm_seq_item_pull_port      -     @1358
+#       write_fifo_sequencer_h                     write_fifo_sequencer        -     @1242
+#         rsp_export                               uvm_analysis_export         -     @1249
+#         seq_item_export                          uvm_seq_item_pull_imp       -     @1343
+#         arbitration_queue                        array                       0     -    
+#         lock_queue                               array                       0     -    
+#         num_last_reqs                            integral                    32    'd1  
+#         num_last_rsps                            integral                    32    'd1  
+# ----------------------------------------------------------------------------------------
+# 
+# UVM_INFO ../../src/axi_fifo_bfm/test/test//write_test.sv(21) @ 0: uvm_test_top [write_test] write test
+# UVM_INFO ../../src/axi4_avip/src/hvl_top/slave/axi4_slave_driver_proxy.sv(148) @ 0: uvm_test_top.env_h.axi_slave_agent.axi4_slave_drv_proxy_h [axi4_slave_driver_proxy] SLAVE_DRIVER_PROXY
+# UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(114) @ 5000: reporter [AXI4_SLAVE_DRIVER_BFM] SYSTEM RESET ACTIVATED
+# UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(129) @ 15000: reporter [AXI4_SLAVE_DRIVER_BFM] SYSTEM RESET DE-ACTIVATED
+# UVM_INFO ../../src/axi_fifo_bfm/write_fifo_agent//write_fifo_driver.sv(116) @ 25000: uvm_test_top.env_h.write_fifo_agent.write_fifo_driver_h [write_fifo_driver] waiting for FIFO is not full in write_drive_pkt task
+# UVM_INFO ../../src/axi_fifo_bfm/write_fifo_agent//write_fifo_driver.sv(116) @ 35000: uvm_test_top.env_h.write_fifo_agent.write_fifo_driver_h [write_fifo_driver] waiting for FIFO is not full in write_drive_pkt task
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 35000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../../src/axi4_avip/src/hvl_top/slave/axi4_slave_coverage.sv(231) @ 35000: uvm_test_top.env_h.axi_slave_agent.axi4_slave_cov_h [axi4_slave_coverage] AXI4 Slave Agent Coverage = 0.00 %
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   16
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [AXI4_SLAVE_DRIVER_BFM]     2
+# [Questa UVM]     2
+# [RNTST]     1
+# [SLAVE_ASSERTIONS]     1
+# [TEST_DONE]     1
+# [UVMTOP]     1
+# [axi4 slave agent bfm]     1
+# [axi4 slave driver bfm]     1
+# [axi4 slave monitor bfm]     1
+# [axi4_slave_coverage]     1
+# [axi4_slave_driver_proxy]     1
+# [write_fifo_driver]     2
+# [write_test]     1
+# ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 35 ns  Iteration: 62  Instance: /top
+# Saving coverage database on exit...
+# End time: 22:20:31 on Nov 01,2023, Elapsed time: 0:00:13
+# Errors: 4, Warnings: 38
+
+-----------------------------------------------------------------
+-------------------- Simulation Report --------------------------
+
+Simulator Errors
+# ** Error: Unable to lock WLF file "write_test/waveform.wlf". Retrying 1 times, errno 11
+# ** Error: Unable to lock WLF file "write_test/waveform.wlf". Retrying 2 times, errno 11
+# ** Error: Unable to lock WLF file "write_test/waveform.wlf". Retrying 3 times, errno 11
+# ** Error: Cannot lock WLF file: "write_test/waveform.wlf"
+# Errors: 4, Warnings: 38
+
+UVM Fatal
+# UVM_FATAL :    0
+
+UVM Errors
+# UVM_ERROR :    0
+
+UVM Warnings
+# UVM_WARNING :    0
+
+Testname: write_test
+
+Log file path: write_test/write_test.log
+
+Waveform: vsim -view write_test/waveform.wlf &
+
+Coverage report: firefox write_test/html_cov_report/index.html &
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+
+QuestaSim vcover 10.6c Coverage Utility 2017.07 Jul 25 2017
+Start time: 22:20:31 on Nov 01,2023
+vcover report -html write_test/write_test_coverage.ucdb -htmldir write_test/html_cov_report -details 
+Report created in write_test/html_cov_report/index.html
+End time: 22:20:31 on Nov 01,2023, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
