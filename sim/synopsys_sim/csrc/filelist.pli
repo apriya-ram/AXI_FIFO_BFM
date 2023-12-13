@@ -1,0 +1,6 @@
+PLI_STUB_OBJS_OBJ1=_vcs_pli_stub_.o
+PLI_STUB_OBJS_SRC1=_vcs_pli_stub_.c
+PLI_STUB_OBJS += $(PLI_STUB_OBJS_OBJ1)
+$(PLI_STUB_OBJS_OBJ1): $(PLI_STUB_OBJS_SRC1)
+	@$(CC) -I/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/include  -pipe -DVCSMX -DUVM_DPI_DO_TYPE_CHECK -fPIC    -I/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/include  -fPIC -c -o $(PLI_STUB_OBJS_OBJ1) $(PLI_STUB_OBJS_SRC1)
+	@strip -g $(PLI_STUB_OBJS_OBJ1)

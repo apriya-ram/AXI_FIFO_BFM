@@ -1,0 +1,86 @@
+Command: /hwetools/work_area/frontend/johnshahid_B7/axi_fifo_copy/sim/synopsys_sim/./simv +UVM_TESTNAME=fifo_bfm_32b_wr_incr_alligned_test +UVM_VERBOSITY=UVM_HIGH -l fifo_bfm_32b_wr_incr_alligned_test/fifo_bfm_32b_wr_incr_alligned_test.log
+Chronologic VCS simulator copyright 1991-2020
+Contains Synopsys proprietary information.
+Compiler version Q-2020.03-SP2-8_Full64; Runtime version Q-2020.03-SP2-8_Full64;  Nov 24 12:41 2023
+UVM_INFO /hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/base/uvm_root.svh(402) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+*Verdi* Loading libsscore_vcs202003.so
+FSDB Dumper for VCS, Release Verdi_Q-2020.03-SP2-8, Linux x86_64/64bit, 08/31/2021
+(C) 1996 - 2021 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'novas.fsdb'
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : Enable +all dumping.
+*Verdi* : End of traversing.
+UVM_INFO ../../src/axi4_avip/src/hdl_top/master_agent_bfm/axi4_master_driver_bfm.sv(87) @ 0: reporter [AXI4_MASTER_DRIVER_BFM] AXI4_MASTER_DRIVER_BFM
+UVM_INFO ../../src/axi4_avip/src/hdl_top/master_assertions.sv(70) @ 0: reporter [MASTER_ASSERTIONS] MASTER_ASSERTIONS
+UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_assertions.sv(70) @ 0: reporter [SLAVE_ASSERTIONS] SLAVE_ASSERTIONS
+UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(85) @ 0: reporter [axi4 slave driver bfm] AXI4 SLAVE DRIVER BFM
+UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv(82) @ 0: reporter [axi4 slave monitor bfm] AXI4 SLAVE MONITOR BFM
+HDL_TOP
+UVM_INFO ../../src/axi4_avip/src/hdl_top/master_agent_bfm/axi4_master_agent_bfm.sv(171) @ 0: reporter [axi4 master agent bfm] AXI4 MASTER AGENT BFM
+UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_agent_bfm.sv(175) @ 0: reporter [axi4 slave agent bfm] AXI4 SLAVE AGENT BFM
+address in sequence=35a6f4c0
+UVM_INFO @ 0: reporter [RNTST] Running test fifo_bfm_32b_wr_incr_alligned_test...
+UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_assertions.sv(70) @ 0: reporter [SLAVE_ASSERTIONS] SLAVE_ASSERTIONS
+UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_driver_bfm.sv(85) @ 0: reporter [axi4 slave driver bfm] AXI4 SLAVE DRIVER BFM
+UVM_INFO ../../src/axi4_avip/src/hdl_top/slave_agent_bfm/axi4_slave_monitor_bfm.sv(82) @ 0: reporter [axi4 slave monitor bfm] AXI4 SLAVE MONITOR BFM
+HDL_TOP
+UVM_FATAL @ 0: reporter [TTINST] An uvm_test_top already exists via a previous call to run_test
+UVM_INFO /hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/base/uvm_report_catcher.svh(705) @ 0: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/base/uvm_report_server.svh(894) @ 0: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   13
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    1
+** Report counts by id
+[AXI4_MASTER_DRIVER_BFM]     1
+[MASTER_ASSERTIONS]     1
+[RNTST]     1
+[SLAVE_ASSERTIONS]     2
+[TTINST]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[axi4 master agent bfm]     1
+[axi4 slave agent bfm]     1
+[axi4 slave driver bfm]     2
+[axi4 slave monitor bfm]     2
+
+$finish called from file "/hwetools/synosys/installed_tools/vcs/Q-2020.03-SP2-8/etc/uvm-1.2/base/uvm_root.svh", line 135.
+$finish at simulation time                    0
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 0 ns
+CPU Time:      0.870 seconds;       Data structure size:   1.0Mb
+Fri Nov 24 12:41:52 2023

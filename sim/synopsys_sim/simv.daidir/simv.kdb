@@ -1,0 +1,17 @@
+rc file Version 1.0
+
+[Design]
+COMPILE_PATH=/hwetools/work_area/frontend/johnshahid_B7/axi_fifo_copy/sim/synopsys_sim
+VERDI_HOME=/hwetools/synosys/installed_tools/verdi/Q-2020.03-SP2-8
+SystemC=FALSE
+UUM=FALSE
+KDB=FALSE
+USE_NOVAS_HOME=FALSE
+COSIM=FALSE
+TOP=uvm_custom_install_recording uvm_custom_install_verdi_recording hdl_top hvl_top top 
+OPTION=-ssz -ssv -ssy 
+ELAB_OPTION=-ssz -ssv -ssy 
+
+[Value]
+WREALX=ffff534e50535f58
+WREALZ=ffff534e50535f5a
