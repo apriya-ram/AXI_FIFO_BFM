@@ -74,14 +74,14 @@ all:
 #  +cover=becstf
 compile:
 	make clean_compile;
-	#make clean_simulate;
+	make clean_simulate;
 	vlib work; 
 	vlog -sv \
 	+acc \
 	+cover \
 	+fcover \
 	-l axi4_fifo_bfm_compile.log \
-	-f ../axi_fifo_bfm.f
+	-f ../axi4_fifo.f
 
 	# -s means silent mode
 	#  The command executed along with the output will be displayed on the terminal
@@ -92,7 +92,7 @@ compile:
 
 # Setting a default test as base_test
 ifndef test
-override test = fifo_base_test
+override test = fifo_bfm_base_test
 endif
 
 # Setting the default uvm_verbosity to UVM_MEDIUM
@@ -168,7 +168,7 @@ clean_compile:
 regression:
 	# Run compilation
 	#make compile
-	#make clean_simulate
+	make clean_simulate
 	# Run simualtion - regression 
 	python regression_handling.py $(testlist_name)
 	#	# Get the tests from regression list
