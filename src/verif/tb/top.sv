@@ -1,37 +1,26 @@
 `ifndef TOP_INCLUDED_
 `define TOP_INCLUDED_
 
-//--------------------------------------------------------------------------------------------
-// Module      : Top
-// Description : Has a interface master and slave agent bfm.
-//--------------------------------------------------------------------------------------------
-
-`timescale 1ns / 1ps
+`timescale 1ns/1ns
 
 module top;
- 
+
   `include "uvm_macros.svh"
   import uvm_pkg::*;
   import axi4_globals_pkg::*;
-  
+    
   import write_fifo_pkg::*;
-  import read_fifo_pkg::*;
+//  import read_fifo_pkg::*;
   import axi4_slave_pkg::*;
-  import axi_env_pkg::*;
+  import env_package::*;
   import test_pkg::*;
-  
-  //-------------------------------------------------------
-  // Clock Reset Initialization
-  //-------------------------------------------------------
-  //giving as parameterised
+
   bit aclk;
   bit aresetn;
   int freq = 100;
   int t = 1000/freq;
 
-  //-------------------------------------------------------
-  // Display statement for HDL_TOP
-  //-------------------------------------------------------
+  
   initial begin
     $display("HDL_TOP");
   end
@@ -39,10 +28,7 @@ module top;
   //-------------------------------------------------------
   // System Clock Generation
   //-------------------------------------------------------
-  initial begin
-    aclk = 1'b0;
-    forever #(t/2) aclk = ~aclk;
-  end
+  always #(t/2) aclk = ~aclk; 
 
   //-------------------------------------------------------
   // System Reset Generation
@@ -58,22 +44,21 @@ module top;
     aresetn = 1'b1;
   end
 
-  // Variable : intf
-  // axi4 Interface Instantiation
+   
   axi4_if intf(.aclk(aclk), .aresetn(aresetn));
 
-  fifo_if fintf(.clk(aclk), .rst(aresetn));
+  fifo_if fintf(.clk(aclk), .rstn(aresetn));
 
   //Dut instantiation
   //to-do parameters and fifo signals
   //giving same clk and reset to fifo and axi master
   //might be an error in fifo interface signals mapping, most probably in d_in and d_out
   
-  Project_AXI4_Top project_axi4_top(
+  Top_Module_AXI4 project_axi4_top(
 
     //clk nd reset
       .clk(aclk),
-      .rst(aresetn),
+      .rstn(aresetn),
       .ACLK(aclk),
       .ARESETn(aresetn),
 
@@ -133,11 +118,12 @@ module top;
       .wr_data(fintf.wr_data),
       .full(fintf.full)
   );
-
+  
   initial begin
     //config db for write and read fifo
     uvm_config_db#(virtual fifo_if)::set(null,"*","vif",fintf);
     run_test("fifo_bfm_base_test");
+    //run_test("fifo_bfm_wr_rd_test");
   end
 
   //-------------------------------------------------------
@@ -160,7 +146,7 @@ module top;
     end
   endgenerate
   
-endmodule : top
+endmodule
 
 `endif
 
