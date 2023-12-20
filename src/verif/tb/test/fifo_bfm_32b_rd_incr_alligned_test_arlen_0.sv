@@ -4,7 +4,7 @@
 class fifo_bfm_32b_rd_incr_alligned_test_arlen_0 extends fifo_base_test;
   `uvm_component_utils(fifo_bfm_32b_rd_incr_alligned_test_arlen_0)
   //bit[31:0] wdata_seq[$];
-  bit[3:0] arlenn = 0;
+  bit[3:0] arlenn = 8;
   bit [31:0] addr;//=$urandom;
   //bit[3:0] wstrbb=4'hf;
   bit[1:0] arburstt = 1;
