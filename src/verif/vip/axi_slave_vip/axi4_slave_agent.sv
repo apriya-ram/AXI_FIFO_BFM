@@ -62,6 +62,8 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 function void axi4_slave_agent::build_phase(uvm_phase phase);
   super.build_phase(phase);
+  axi4_slave_agent_cfg_h = axi4_slave_agent_config::type_id::create("axi4_slave_agent_cfg_h",this);
+  axi4_slave_agent_cfg_h = new();
 
    if(axi4_slave_agent_cfg_h.is_active == UVM_ACTIVE) begin
      axi4_slave_drv_proxy_h  = axi4_slave_driver_proxy::type_id::create("axi4_slave_drv_proxy_h",this);

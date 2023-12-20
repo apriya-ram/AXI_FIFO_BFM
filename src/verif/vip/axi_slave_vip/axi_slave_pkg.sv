@@ -16,11 +16,12 @@ package axi4_slave_pkg;
   // Import axi4_globals_pkg 
   import axi4_globals_pkg::*;
   import write_fifo_pkg::*;
-  import read_fifo_pkg::*;
+//  import read_fifo_pkg::*;
 
   //-------------------------------------------------------
   // Include all other files
   //-------------------------------------------------------
+  `include "axi4_slave_memory.sv"
   `include "axi4_slave_tx.sv"
   `include "axi4_slave_agent_config.sv"
   `include "axi4_slave_seq_item_converter.sv"

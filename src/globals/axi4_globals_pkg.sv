@@ -46,13 +46,17 @@ package axi4_globals_pkg;
   //Sets the width it can store in each location
   parameter int MEMORY_WIDTH = 8;
 
+  //Parameter: STROBE_WIDTH
+  //Used to define the width of the strobes
+  parameter int STROBE_WIDTH = (DATA_WIDTH/8);
+
   //Variable: MEM_ID
   //Indicates Slave Memory Depth 
   parameter int MEM_ID = 2**ADDRESS_WIDTH;
 
   //Variable: LENGTH
   //Indicates the length of the address write and read channels
-  parameter int LENGTH = 8;
+  parameter int LENGTH = 3;
 
   //Variable: OUTSTANDING_FIFO_DEPTH
   //Indicates the fifo depth of outstanding transaction
@@ -108,21 +112,21 @@ package axi4_globals_pkg;
 
   //Enum: awlock_e
   //Used to declare enum type for write lock access
-  typedef enum bit {
-    WRITE_NORMAL_ACCESS    = 1'b0,
-    WRITE_EXCLUSIVE_ACCESS = 1'b1
+  typedef enum bit [1:0] {
+    WRITE_NORMAL_ACCESS    = 2'b00,
+    WRITE_EXCLUSIVE_ACCESS = 2'b01
   } awlock_e;
 
   //Enum: arlock_e
   //Used to declare enum type for read lock access
-  typedef enum bit {
-    READ_NORMAL_ACCESS    = 1'b0,
-    READ_EXCLUSIVE_ACCESS = 1'b1
+  typedef enum bit [1:0] {
+    READ_NORMAL_ACCESS    = 2'b00,
+    READ_EXCLUSIVE_ACCESS = 2'b01
   } arlock_e;
 
   //Enum: awcache_e
   //Used to declare enum type for write cache access
-  typedef enum bit [3:0] {
+  typedef enum bit [1:0] {
     WRITE_BUFFERABLE,
     WRITE_MODIFIABLE,
     WRITE_OTHER_ALLOCATE,
@@ -131,7 +135,7 @@ package axi4_globals_pkg;
 
   //Enum: arcache_e
   //Used to declare enum type for read cache access
-  typedef enum bit [3:0] {
+  typedef enum bit [1:0] {
     READ_BUFFERABLE,
     READ_MODIFIABLE,
     READ_OTHER_ALLOCATE,
@@ -173,86 +177,86 @@ package axi4_globals_pkg;
 
   //Enum: awid_e
   //Used to declare the enum type of write address id
-  typedef enum bit [15:0] {
-    AWID_0  = 16'd0,
-    AWID_1  = 16'd1,
-    AWID_2  = 16'd2,
-    AWID_3  = 16'd3,
-    AWID_4  = 16'd4,
-    AWID_5  = 16'd5,
-    AWID_6  = 16'd6,
-    AWID_7  = 16'd7,
-    AWID_8  = 16'd8,
-    AWID_9  = 16'd9,
-    AWID_10 = 16'd10,
-    AWID_11 = 16'd11,
-    AWID_12 = 16'd12,
-    AWID_13 = 16'd13,
-    AWID_14 = 16'd14,
-    AWID_15 = 16'd15
+  typedef enum bit [3:0] {
+    AWID_0  = 4'd0,
+    AWID_1  = 4'd1,
+    AWID_2  = 4'd2,
+    AWID_3  = 4'd3,
+    AWID_4  = 4'd4,
+    AWID_5  = 4'd5,
+    AWID_6  = 4'd6,
+    AWID_7  = 4'd7,
+    AWID_8  = 4'd8,
+    AWID_9  = 4'd9,
+    AWID_10 = 4'd10,
+    AWID_11 = 4'd11,
+    AWID_12 = 4'd12,
+    AWID_13 = 4'd13,
+    AWID_14 = 4'd14,
+    AWID_15 = 4'd15
   } awid_e;
 
   //Enum: bid_e
   //Used to declare the enum type of write response id
-  typedef enum bit [15:0] {
-    BID_0  = 16'd0,
-    BID_1  = 16'd1,
-    BID_2  = 16'd2,
-    BID_3  = 16'd3,
-    BID_4  = 16'd4,
-    BID_5  = 16'd5,
-    BID_6  = 16'd6,
-    BID_7  = 16'd7,
-    BID_8  = 16'd8,
-    BID_9  = 16'd9,
-    BID_10 = 16'd10,
-    BID_11 = 16'd11,
-    BID_12 = 16'd12,
-    BID_13 = 16'd13,
-    BID_14 = 16'd14,
-    BID_15 = 16'd15
+  typedef enum bit [3:0] {
+    BID_0  = 4'd0,
+    BID_1  = 4'd1,
+    BID_2  = 4'd2,
+    BID_3  = 4'd3,
+    BID_4  = 4'd4,
+    BID_5  = 4'd5,
+    BID_6  = 4'd6,
+    BID_7  = 4'd7,
+    BID_8  = 4'd8,
+    BID_9  = 4'd9,
+    BID_10 = 4'd10,
+    BID_11 = 4'd11,
+    BID_12 = 4'd12,
+    BID_13 = 4'd13,
+    BID_14 = 4'd14,
+    BID_15 = 4'd15
   } bid_e;
 
   //Enum: arid_e
   //Used to declare the enum type of read address id
-  typedef enum bit [15:0] {
-    ARID_0  = 16'd0,
-    ARID_1  = 16'd1,
-    ARID_2  = 16'd2,
-    ARID_3  = 16'd3,
-    ARID_4  = 16'd4,
-    ARID_5  = 16'd5,
-    ARID_6  = 16'd6,
-    ARID_7  = 16'd7,
-    ARID_8  = 16'd8,
-    ARID_9  = 16'd9,
-    ARID_10 = 16'd10,
-    ARID_11 = 16'd11,
-    ARID_12 = 16'd12,
-    ARID_13 = 16'd13,
-    ARID_14 = 16'd14,
-    ARID_15 = 16'd15
+  typedef enum bit [3:0] {
+    ARID_0  = 4'd0,
+    ARID_1  = 4'd1,
+    ARID_2  = 4'd2,
+    ARID_3  = 4'd3,
+    ARID_4  = 4'd4,
+    ARID_5  = 4'd5,
+    ARID_6  = 4'd6,
+    ARID_7  = 4'd7,
+    ARID_8  = 4'd8,
+    ARID_9  = 4'd9,
+    ARID_10 = 4'd10,
+    ARID_11 = 4'd11,
+    ARID_12 = 4'd12,
+    ARID_13 = 4'd13,
+    ARID_14 = 4'd14,
+    ARID_15 = 4'd15
   } arid_e;
 
   //Enum: rid_e
   //Used to declare the enum type of read data/response id
-  typedef enum bit [15:0] {
-    RID_0  = 16'd0,
-    RID_1  = 16'd1,
-    RID_2  = 16'd2,
-    RID_3  = 16'd3,
-    RID_4  = 16'd4,
-    RID_5  = 16'd5,
-    RID_6  = 16'd6,
-    RID_7  = 16'd7,
-    RID_8  = 16'd8,
-    RID_9  = 16'd9,
-    RID_10 = 16'd10,
-    RID_11 = 16'd11,
-    RID_12 = 16'd12,
-    RID_13 = 16'd13,
-    RID_14 = 16'd14,
-    RID_15 = 16'd15
+  typedef enum bit [3:0] {
+    RID_0  = 4'd0,
+    RID_1  = 4'd1,
+    RID_2  = 4'd2,
+    RID_3  = 4'd3,
+    RID_4  = 4'd4,
+    RID_5  = 4'd5,
+    RID_6  = 4'd6,
+    RID_7  = 4'd7,
+    RID_8  = 4'd8,
+    RID_9  = 4'd9,
+    RID_10 = 4'd10,
+    RID_11 = 4'd11,
+    RID_12 = 4'd12,
+    RID_13 = 4'd13,
+    RID_14 = 4'd14,
+    RID_15 = 4'd15
   } rid_e;
 
   //Enum: bresp_e
@@ -289,6 +293,32 @@ package axi4_globals_pkg;
     NON_BLOCKING_READ   = 2'b11 
   }transfer_type_e;
 
+  //Enum : read_data_type_mode_e
+  //Used to the determine the type of the read data
+  typedef enum bit[1:0] {
+    RANDOM_DATA_MODE = 2'b00,
+    SLAVE_MEM_MODE   = 2'b01,
+    USER_DATA_MODE   = 2'b10,
+    SLAVE_ERR_RESP_MODE = 2'b11
+  } read_data_type_mode_e;
+
+  //Enum : transfer_type_e  
+  //Used to determine the mode for score board check 
+  typedef enum bit[1:0] {
+    ONLY_WRITE_DATA  = 2'b00,
+    ONLY_READ_DATA   = 2'b01,
+    WRITE_READ_DATA  = 2'b10
+  } write_read_data_mode_e;
+  
+  //Enum : Response_mode_e  
+  //Used to determine the mode of response to send
+  typedef enum bit[1:0] {
+    ONLY_WRITE_RESP_OUT_OF_ORDER  = 2'b00,
+    ONLY_READ_RESP_OUT_OF_ORDER   = 2'b01,
+    WRITE_READ_RESP_OUT_OF_ORDER  = 2'b10,
+    RESP_IN_ORDER                 = 2'b11
+  } response_mode_e;
+
   //-------------------------------------------------------
   // Structs used in axi_avip are given below
   //-------------------------------------------------------
@@ -299,11 +329,11 @@ package axi4_globals_pkg;
     //Write Address Channel Signals
     bit [3:0]               awid;
     bit [ADDRESS_WIDTH-1:0] awaddr;
-    bit [7:0]               awlen;
+    bit [3:0]               awlen;
     bit [2:0]               awsize;
     bit [1:0]               awburst;
-    bit                     awlock;
-    bit [3:0]               awcache;
+    bit [1:0]               awlock; //john changed from bit to bit[1:0]
+    bit [1:0]               awcache;
     bit [3:0]               awqos;
     bit [3:0]               awregion;
     bit                     awuser;
@@ -334,15 +364,15 @@ package axi4_globals_pkg;
     //Read Address Channel Signals
     bit               [3:0] arid;
     bit [ADDRESS_WIDTH-1:0] araddr;
-    bit               [7:0] arlen;
+    bit               [3:0] arlen;
     bit               [2:0] arsize;
     bit               [1:0] arburst;
-    bit               [3:0] arcache;
+    bit               [1:0] arcache;
     bit               [2:0] arprot;
     bit               [3:0] arqos;
     bit               [3:0] arregion;
     bit               [3:0] aruser;
-    bit                     arlock;
+    bit               [1:0] arlock;//john changed from bit to bit[1:0]
     //Read Data Channel Signals
     bit                         [3:0] rid;
     bit [2**LENGTH:0][DATA_WIDTH-1:0] rdata;
@@ -369,6 +399,7 @@ package axi4_globals_pkg;
     int                     wait_count_read_data_channel;
     int                     outstanding_write_tx;
     int                     outstanding_read_tx;
+    response_mode_e         slave_response_mode;
   } axi4_transfer_cfg_s;
 
 endpackage : axi4_globals_pkg

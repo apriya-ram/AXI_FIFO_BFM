@@ -28,13 +28,14 @@
         +incdir+../../src/hvl_top/test/virtual_sequences/ 
         +incdir+../../src/hdl_top/axi4_interface/
 
-        ../../src/rtl/AXI_MASTER_WRITE__CONTROL.v
-        ../../src/rtl/AXI_MASTER_READ_Control.v
+        ../../src/rtl/AXI_MASTER_WRITE_CONTROL.v
+        ../../src/rtl/AXI_MASTER_READ_CONTROL.v
         ../../src/rtl/sync_fifo.v
         ../../src/rtl/design_fifo.v
         ../../src/rtl/decoder.v
         ../../src/rtl/AXI_Master.v
         ../../src/rtl/Top_Module_AXI4.v
+        ../../src/rtl/write_response_handler.v
 
         ../../src/globals/axi4_globals_pkg.sv 
         ../../src/hvl_top/master/axi4_master_pkg.sv 
@@ -54,10 +55,9 @@
         ../../src/hvl_top/test/virtual_sequences/axi4_virtual_seq_pkg.sv 
         ../../src/hvl_top/test/axi4_test_pkg.sv
 
-        ../../src/verif/bfm/write_fifo/fifo_interface/fifo_interface.sv
+        ../../src/verif/bfm/write_fifo/fifo_interface/fifo_intf.sv
         ../../src/verif/bfm/write_fifo/write_fifo_pkg.sv
-        ../../src/verif/bfm/read_fifo/read_fifo_pkg.sv
         ../../src/verif/vip/axi_slave_vip/axi_slave_pkg.sv
-        ../../src/verif/tb/env/axi_env_pkg.sv
+        ../../src/verif/tb/env/env_package.sv
         ../../src/verif/tb/test/test_pkg.sv
         ../../src/verif/tb/top.sv
