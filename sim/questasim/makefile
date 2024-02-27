@@ -132,6 +132,7 @@ simulate:
 
 	# For checking and reporting simulation errors
 	make simulate_war_err
+	make merge_cov_report
 
 	## TODO(mshariff): 
 	## # For coverage report in text format 
