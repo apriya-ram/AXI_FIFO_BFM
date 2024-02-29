@@ -4,7 +4,7 @@
 class fifo_bfm_32b_wr_incr_alligned_test_awlen_0_to_3 extends fifo_base_test;
   `uvm_component_utils(fifo_bfm_32b_wr_incr_alligned_test_awlen_0_to_3)
   bit[31:0] wdata_seq[$];
-  bit[3:0] awlenn=2;
+  bit[3:0] awlenn;
   bit [31:0] addr;
   bit[3:0] wstrbb=4'hf;
   bit[1:0] awburstt = 1;
@@ -18,7 +18,7 @@ class fifo_bfm_32b_wr_incr_alligned_test_awlen_0_to_3 extends fifo_base_test;
 
   function new(string name = "fifo_bfm_32b_wr_incr_alligned_test_awlen_0_to_3",uvm_component parent = null);
     super.new(name, parent);
-   // void'(std::randomize(awlenn) with {awlenn inside {[0:3]};});
+    void'(std::randomize(awlenn) with {awlenn inside {[0:3]};});
     $display("Value of awlenn =%0d",awlenn);
 
     void'(std::randomize(addr) with {addr%((2**awsizee)*8)==0;});

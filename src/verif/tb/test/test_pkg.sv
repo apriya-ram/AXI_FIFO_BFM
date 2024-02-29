@@ -11,8 +11,7 @@ package test_pkg;
   import env_package::*;
  // import sequence_pkg::*; 
 
-  `include "test.sv"
-  `include "write_test.sv"
+  `include "fifo_base_test.sv"
   `include "fifo_bfm_8b_wr_incr_test.sv"
   `include "fifo_bfm_8b_wr_fixed_test.sv"
   `include "fifo_bfm_32b_wr_incr_alligned_test_awlen_0.sv"
